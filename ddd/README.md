@@ -1,2 +1,2 @@
 # ddd
-Domain Driven Development Support Library
+Domain-Driven Design Support Library

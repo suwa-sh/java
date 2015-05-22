@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter>
+
+     <!-- ClassNotToBeAnalyzedクラスに関する問題を検出しないようにします -->
+<!--
+     <Match class="com.foobar.ClassNotToBeAnalyzed" />
+-->
+
+     <!-- ClassWithSomeBugsMatchedクラスに関する以下の問題を検出しないようにします
+       DE : 例外を見落としている、または無視しています。
+       UrF: 参照しないフィールドがあります。
+      -->
+<!--
+     <Match class="com.foobar.ClassWithSomeBugsMatched">
+       <BugCode name="DE,UrF" />
+     </Match>
+-->
+
+     <!-- すべてのクラスに対してSQLの問題を検出しないようにします -->
+<!--
+     <Match classregex=".*" >
+       <BugCode name="SQL" />
+     </Match>
+-->
+
+     <!-- AnotherClassクラスのnonOverloadedMethod, frob, blatメソッドに対してフィールドの二重チェックの問題を検出しないようにします -->
+<!--
+     <Match class="com.foobar.AnotherClass">
+       <Or>
+         <Method name="nonOverloadedMethod" />
+         <Method name="frob" params="int,java.lang.String" returns="void" />
+         <Method name="blat" params="" returns="boolean" />
+       </Or>
+       <BugCode name="DC" />
+     </Match>
+-->
+
+    <!-- MyClassクラスのsomeMethodに対して優先度2(普通)の意味の無いローカル変数への代入の問題を検出しないようにします -->
+<!--
+    <Match class="com.foobar.MyClass">
+      <Method name="someMethod"/>
+      <BugCode name="DLS "/>
+      <Priority value="2"/>
+    </Match>
+-->
+</FindBugsFilter>

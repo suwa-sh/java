@@ -148,6 +148,6 @@ Checkstyle configurartion that checks the Google coding conventions (https://goo
   </module>
   <module name="JavadocPackage"/>
   <module name="SuppressionFilter">
-    <property name="file" value="/checkstyle/suppressions.xml"/>
+    <property name="file" value="https://raw.githubusercontent.com/suwa-sh/java/master/checks/src/main/resources/checkstyle/suppressions.xml"/>
   </module>
 </module>

@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><templates><template autoinsert="true" context="catchblock_context" deleted="false" description="新規 catch ブロック中のコード" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.catchblock" name="catchblock">// ${todo} 自動生成された catch ブロック
+${exception_var}.printStackTrace();</template></templates>

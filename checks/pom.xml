@@ -20,8 +20,9 @@
         <github.repository.owner>suwa-sh</github.repository.owner>
         <github.repository.branch>refs/heads/master</github.repository.branch>
 
-        <java-version>1.7</java-version>
-        <java-encoding>UTF-8</java-encoding>
+        <java.version>1.7</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven-compiler-plugin.version>3.2</maven-compiler-plugin.version>
     </properties>
 
     <repositories>
@@ -46,6 +47,17 @@
 
     <build>
         <plugins>
+            <!-- Compiler -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.2</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>com.github.github</groupId>
                 <artifactId>site-maven-plugin</artifactId>

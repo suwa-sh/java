@@ -6,5 +6,5 @@
 
 <suppressions>
     <suppress checks=".*" files="src[\\/]test[\\/]java[\\/]" />
-    <suppress checks=".*" files=".*\.[\\/]gen[\\/]\." />
+    <suppress checks=".*" files=".*[\\/]gen[\\/]" />
 </suppressions>

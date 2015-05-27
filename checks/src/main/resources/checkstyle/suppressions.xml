@@ -5,5 +5,16 @@
     "http://www.puppycrawl.com/dtds/suppressions_1_1.dtd">
 
 <suppressions>
-    <suppress checks=".*" files="src[\\/]test[\\/]java[\\/]|\*generated-sources\*\*\.\*" />
+    <!-- Suppress checks for test code. -->
+    <suppress checks=".*" files="src[\\/]test[\\/]java[\\/]" />
+
+    <!-- Suppress checks for generated code. -->
+    <suppress files="[/\\]target[/\\]" checks=".+" />
+
+    <!-- Suppress checks for hidden files and folders. -->
+    <suppress files="[/\\]\..+" checks=".+" />
+
+    <!-- Suppress checks for archive and class files. -->
+    <suppress files=".+\.(?:jar|zip|war|ear|sar|par|class|ser)$"
+        checks=".+" />
 </suppressions>

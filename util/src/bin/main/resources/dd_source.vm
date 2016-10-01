@@ -1,0 +1,7 @@
+#foreach ( ${classification} in ${classificationList} )
+# ${classification.name}
+${classification.id}=${classification.name}
+#foreach ( ${value} in ${classification.values} )
+${classification.id}.${value.id}=${value.name}
+#end
+#end

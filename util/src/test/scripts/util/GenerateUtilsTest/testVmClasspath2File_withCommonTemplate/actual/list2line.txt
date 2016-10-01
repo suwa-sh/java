@@ -1,0 +1,4 @@
+this is LINE-1.
+this is LINE-2.
+
+ this is LINE-3. ※先頭に改行コード付き

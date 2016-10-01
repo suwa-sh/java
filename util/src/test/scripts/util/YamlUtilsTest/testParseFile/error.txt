@@ -1,0 +1,15 @@
+classpathSample:
+  list:
+    - elem1
+    - elem2
+  objList:
+    - field1: true
+      field2: null
+      field3: 100
+      field4: # コメント文字列
+    - field1: false
+      field2: "this is obj2"
+      field3: 1.23
+      field4: "# コメント文字列 ※括りあり"
+    errorIndent:
+      errorIndentKey: errorIndentValue

@@ -1,19 +1,19 @@
 package me.suwash.util;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.io.File;
 
+import me.suwash.test.DefaultTestWatcher;
 import me.suwash.util.constant.UtilMessageConst;
 import me.suwash.util.exception.UtilException;
+import me.suwash.util.test.UtilTestWatcher;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.TestName;
 
 @lombok.extern.slf4j.Slf4j
 public class CompressUtilsTest {
@@ -24,33 +24,16 @@ public class CompressUtilsTest {
     private static final String DIR_ACTUAL = DIR_BASE + "/actual";
 
     @Rule
-    public TestName name = new TestName();
+    public DefaultTestWatcher watcher = new UtilTestWatcher();
 
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
-        log.debug("■■■ " + CompressUtilsTest.class.getName() + " ■■■");
-        log.debug("-- Init actual dir --");
+        log.debug("■ Init actual dir");
         FileUtils.rmdirs(DIR_ACTUAL);
     }
 
-    @AfterClass
-    public static void tearDownAfterClass() throws Exception {
-    }
-
-    @Before
-    public void setUp() throws Exception {
-        log.debug("■ " + name.getMethodName() + " - START");
-        log.debug(RuntimeUtils.getMemoryInfo());
-    }
-
-    @After
-    public void tearDown() throws Exception {
-        log.debug(RuntimeUtils.getMemoryInfo());
-        log.debug("■ " + name.getMethodName() + " - END");
-    }
-
     @Test
-    public void testCompressTarGz() {
+    public void testTarGz() {
         String targetDirPath;
         String outputFilePath;
         boolean isRelative;
@@ -60,7 +43,7 @@ public class CompressUtilsTest {
         targetDirPath = DIR_INPUT;
         outputFilePath = DIR_ACTUAL + "/testComparessTarGz.tar.gz";
         isRelative = true;
-        CompressUtils.compressTarGz(targetDirPath, outputFilePath, isRelative);
+        CompressUtils.tarGz(targetDirPath, outputFilePath, isRelative);
         outputFile = new File(outputFilePath);
         assertTrue("ファイルが存在すること", outputFile.isFile());
         // TODO uncompress対応までは、手動で確認
@@ -69,7 +52,7 @@ public class CompressUtilsTest {
         targetDirPath = DIR_INPUT;
         outputFilePath = DIR_ACTUAL + "/testComparessTarGz_absPath.tar.gz";
         isRelative = false;
-        CompressUtils.compressTarGz(targetDirPath, outputFilePath, isRelative);
+        CompressUtils.tarGz(targetDirPath, outputFilePath, isRelative);
         outputFile = new File(outputFilePath);
         assertTrue("ファイルが存在すること", outputFile.isFile());
 
@@ -77,7 +60,7 @@ public class CompressUtilsTest {
         targetDirPath = DIR_INPUT;
         outputFilePath = null;
         isRelative = false;
-        CompressUtils.compressTarGz(targetDirPath, outputFilePath, isRelative);
+        CompressUtils.tarGz(targetDirPath, outputFilePath, isRelative);
         outputFile = new File(DIR_INPUT + ".tar.gz");
         assertTrue("ファイルが存在すること", outputFile.isFile());
         outputFile.delete();
@@ -87,7 +70,7 @@ public class CompressUtilsTest {
         outputFilePath = null;
         isRelative = false;
         try {
-            CompressUtils.compressTarGz(targetDirPath, outputFilePath, isRelative);
+            CompressUtils.tarGz(targetDirPath, outputFilePath, isRelative);
             fail("UtilException をthrowすること");
         } catch (UtilException e) {
             log.debug(e.getMessage());
@@ -97,7 +80,7 @@ public class CompressUtilsTest {
     }
 
     @Test
-    public void testCompressTar() {
+    public void testTar() {
         String targetDirPath;
         String outputFilePath;
         boolean isRelative;
@@ -107,7 +90,7 @@ public class CompressUtilsTest {
         targetDirPath = DIR_INPUT;
         outputFilePath = DIR_ACTUAL + "/testComparessTar.tar";
         isRelative = true;
-        CompressUtils.compressTar(targetDirPath, outputFilePath, isRelative);
+        CompressUtils.tar(targetDirPath, outputFilePath, isRelative);
         outputFile = new File(outputFilePath);
         assertTrue("ファイルが存在すること", outputFile.isFile());
         // TODO uncompress対応までは、手動で確認
@@ -116,7 +99,7 @@ public class CompressUtilsTest {
         targetDirPath = DIR_INPUT;
         outputFilePath = DIR_ACTUAL + "/testComparessTar_absPath.tar";
         isRelative = false;
-        CompressUtils.compressTar(targetDirPath, outputFilePath, isRelative);
+        CompressUtils.tar(targetDirPath, outputFilePath, isRelative);
         outputFile = new File(outputFilePath);
         assertTrue("ファイルが存在すること", outputFile.isFile());
 
@@ -124,7 +107,7 @@ public class CompressUtilsTest {
         targetDirPath = DIR_INPUT;
         outputFilePath = null;
         isRelative = false;
-        CompressUtils.compressTar(targetDirPath, outputFilePath, isRelative);
+        CompressUtils.tar(targetDirPath, outputFilePath, isRelative);
         outputFile = new File(DIR_INPUT + ".tar");
         assertTrue("ファイルが存在すること", outputFile.isFile());
         outputFile.delete();
@@ -134,7 +117,7 @@ public class CompressUtilsTest {
         outputFilePath = null;
         isRelative = false;
         try {
-            CompressUtils.compressTar(targetDirPath, outputFilePath, isRelative);
+            CompressUtils.tar(targetDirPath, outputFilePath, isRelative);
             fail("UtilException をthrowすること");
         } catch (UtilException e) {
             log.debug(e.getMessage());
@@ -144,7 +127,7 @@ public class CompressUtilsTest {
     }
 
     @Test
-    public void testCompressGz() {
+    public void testGzip() {
         String targetFilePath;
         String outputFilePath;
         File outputFile;
@@ -152,7 +135,7 @@ public class CompressUtilsTest {
         // 圧縮
         targetFilePath = DIR_INPUT + "/input.csv";
         outputFilePath = DIR_ACTUAL + "/input.csv.gz";
-        CompressUtils.compressGz(targetFilePath, outputFilePath);
+        CompressUtils.gzip(targetFilePath, outputFilePath);
         outputFile = new File(outputFilePath);
         assertTrue("ファイルが存在すること", outputFile.isFile());
         // TODO uncompress対応までは、手動で確認
@@ -160,7 +143,7 @@ public class CompressUtilsTest {
         // 出力ファイルパスを指定しない場合
         targetFilePath = DIR_INPUT + "/input.csv";
         outputFilePath = null;
-        CompressUtils.compressGz(targetFilePath, outputFilePath);
+        CompressUtils.gzip(targetFilePath, outputFilePath);
         outputFile = new File(DIR_INPUT + "/input.csv.gz");
         assertTrue("ファイルが存在すること", outputFile.isFile());
         outputFile.delete();
@@ -169,7 +152,7 @@ public class CompressUtilsTest {
         targetFilePath = DIR_INPUT + "/notExist";
         outputFilePath = null;
         try {
-            CompressUtils.compressGz(targetFilePath, outputFilePath);
+            CompressUtils.gzip(targetFilePath, outputFilePath);
             fail("UtilException をthrowすること");
         } catch (UtilException e) {
             log.debug(e.getMessage());

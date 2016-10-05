@@ -1,22 +1,17 @@
 package me.suwash.util.gen.classification;
 
-import static org.junit.Assert.*;
-
-import java.io.File;
-
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+import me.suwash.test.DefaultTestWatcher;
+import me.suwash.test.TestUtils;
 import me.suwash.util.FileUtils;
-import me.suwash.util.RuntimeUtils;
-import me.suwash.util.TestUtils;
 import me.suwash.util.constant.UtilMessageConst;
 import me.suwash.util.exception.UtilException;
+import me.suwash.util.test.UtilTestWatcher;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.TestName;
 
 @lombok.extern.slf4j.Slf4j
 public class ClassificationGeneratorTest {
@@ -27,29 +22,12 @@ public class ClassificationGeneratorTest {
     private static final String DIR_ACTUAL = DIR_BASE + "/actual";
 
     @Rule
-    public TestName name = new TestName();
+    public DefaultTestWatcher watcher = new UtilTestWatcher();
 
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
-        log.debug("■■■ " + ClassificationGeneratorTest.class.getName() + " ■■■");
-        log.debug("-- Init actual dir --");
+        log.debug("■ Init actual dir");
         FileUtils.rmdirs(DIR_ACTUAL);
-    }
-
-    @AfterClass
-    public static void tearDownAfterClass() throws Exception {
-    }
-
-    @Before
-    public void setUp() throws Exception {
-        log.debug("■ " + name.getMethodName() + " - START");
-        log.debug(RuntimeUtils.getMemoryInfo());
-    }
-
-    @After
-    public void tearDown() throws Exception {
-        log.debug(RuntimeUtils.getMemoryInfo());
-        log.debug("■ " + name.getMethodName() + " - END");
     }
 
     @Test

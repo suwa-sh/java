@@ -1,50 +1,27 @@
 package me.suwash.util;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang3.StringUtils;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TestName;
-
+import me.suwash.test.DefaultTestWatcher;
 import me.suwash.util.CompareUtils.CompareCriteria;
 import me.suwash.util.CompareUtils.CompareStatus;
+import me.suwash.util.test.UtilTestWatcher;
+
+import org.apache.commons.lang3.StringUtils;
+import org.junit.Rule;
+import org.junit.Test;
 
 @lombok.extern.slf4j.Slf4j
 public class CompareUtilsTest {
 
     @Rule
-    public TestName name = new TestName();
-
-    @BeforeClass
-    public static void setUpBeforeClass() throws Exception {
-        log.debug("■■■ " + CompareUtilsTest.class.getName() + " ■■■");
-    }
-
-    @AfterClass
-    public static void tearDownAfterClass() throws Exception {
-    }
-
-    @Before
-    public void setUp() throws Exception {
-        log.debug("■ " + name.getMethodName() + " - START");
-        log.debug(RuntimeUtils.getMemoryInfo());
-    }
-
-    @After
-    public void tearDown() throws Exception {
-        log.debug(RuntimeUtils.getMemoryInfo());
-        log.debug("■ " + name.getMethodName() + " - END");
-    }
+    public DefaultTestWatcher watcher = new UtilTestWatcher();
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
     @Test
@@ -171,18 +148,18 @@ public class CompareUtilsTest {
         assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Number_LessEqualThan_Left, num1, null));
         assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Number_LessEqualThan_Left, null, null));
         // parseエラー
-        try { CompareUtils.compareInCriteria(CompareCriteria.Number_GraterThan_Left, str1, num1); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Number_GraterThan_Left, num1, str1); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Number_GraterThan_Left, str1, str1); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Number_LessThan_Left, str1, num1); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Number_LessThan_Left, num1, str1); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Number_LessThan_Left, str1, str1); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Number_GraterEqualThan_Left, str1, num1); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Number_GraterEqualThan_Left, num1, str1); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Number_GraterEqualThan_Left, str1, str1); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Number_LessEqualThan_Left, str1, num1); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Number_LessEqualThan_Left, num1, str1); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Number_LessEqualThan_Left, str1, str1); fail(); } catch (Exception e) {}
+        try { CompareUtils.compareInCriteria(CompareCriteria.Number_GraterThan_Left, str1, num1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Number_GraterThan_Left, num1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Number_GraterThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Number_LessThan_Left, str1, num1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Number_LessThan_Left, num1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Number_LessThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Number_GraterEqualThan_Left, str1, num1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Number_GraterEqualThan_Left, num1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Number_GraterEqualThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Number_LessEqualThan_Left, str1, num1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Number_LessEqualThan_Left, num1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Number_LessEqualThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
 
         //--------------------------------------------------------------------------------
         // 年
@@ -216,18 +193,18 @@ public class CompareUtilsTest {
         assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Year_LessEqualThan_Left, year1, null));
         assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Year_LessEqualThan_Left, null, null));
         // parseエラー
-        try { CompareUtils.compareInCriteria(CompareCriteria.Year_GraterThan_Left, str1, year1); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Year_GraterThan_Left, year1, "100"); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Year_GraterThan_Left, str1, str1); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Year_LessThan_Left, str1, year1); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Year_LessThan_Left, year1, "100"); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Year_LessThan_Left, str1, str1); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Year_GraterEqualThan_Left, str1, year1); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Year_GraterEqualThan_Left, year1, "100"); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Year_GraterEqualThan_Left, str1, str1); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Year_LessEqualThan_Left, str1, year1); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Year_LessEqualThan_Left, year1, "100"); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Year_LessEqualThan_Left, str1, str1); fail(); } catch (Exception e) {}
+        try { CompareUtils.compareInCriteria(CompareCriteria.Year_GraterThan_Left, str1, year1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Year_GraterThan_Left, year1, "100"); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Year_GraterThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Year_LessThan_Left, str1, year1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Year_LessThan_Left, year1, "100"); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Year_LessThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Year_GraterEqualThan_Left, str1, year1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Year_GraterEqualThan_Left, year1, "100"); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Year_GraterEqualThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Year_LessEqualThan_Left, str1, year1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Year_LessEqualThan_Left, year1, "100"); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Year_LessEqualThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
 
         //--------------------------------------------------------------------------------
         // 年月
@@ -261,18 +238,18 @@ public class CompareUtilsTest {
         assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Month_LessEqualThan_Left, month1, null));
         assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Month_LessEqualThan_Left, null, null));
         // parseエラー
-        try { CompareUtils.compareInCriteria(CompareCriteria.Month_GraterThan_Left, str1, month1); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Month_GraterThan_Left, month1, "100"); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Month_GraterThan_Left, str1, str1); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Month_LessThan_Left, str1, month1); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Month_LessThan_Left, month1, "100"); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Month_LessThan_Left, str1, str1); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Month_GraterEqualThan_Left, str1, month1); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Month_GraterEqualThan_Left, month1, "100"); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Month_GraterEqualThan_Left, str1, str1); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Month_LessEqualThan_Left, str1, month1); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Month_LessEqualThan_Left, month1, "100"); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Month_LessEqualThan_Left, str1, str1); fail(); } catch (Exception e) {}
+        try { CompareUtils.compareInCriteria(CompareCriteria.Month_GraterThan_Left, str1, month1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Month_GraterThan_Left, month1, "100"); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Month_GraterThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Month_LessThan_Left, str1, month1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Month_LessThan_Left, month1, "100"); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Month_LessThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Month_GraterEqualThan_Left, str1, month1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Month_GraterEqualThan_Left, month1, "100"); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Month_GraterEqualThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Month_LessEqualThan_Left, str1, month1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Month_LessEqualThan_Left, month1, "100"); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Month_LessEqualThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
 
         //--------------------------------------------------------------------------------
         // 年月日
@@ -306,18 +283,18 @@ public class CompareUtilsTest {
         assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Date_LessEqualThan_Left, date1, null));
         assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Date_LessEqualThan_Left, null, null));
         // parseエラー
-        try { CompareUtils.compareInCriteria(CompareCriteria.Date_GraterThan_Left, str1, date1); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Date_GraterThan_Left, date1, "100"); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Date_GraterThan_Left, str1, str1); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Date_LessThan_Left, str1, date1); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Date_LessThan_Left, date1, "100"); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Date_LessThan_Left, str1, str1); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Date_GraterEqualThan_Left, str1, date1); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Date_GraterEqualThan_Left, date1, "100"); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Date_GraterEqualThan_Left, str1, str1); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Date_LessEqualThan_Left, str1, date1); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Date_LessEqualThan_Left, date1, "100"); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Date_LessEqualThan_Left, str1, str1); fail(); } catch (Exception e) {}
+        try { CompareUtils.compareInCriteria(CompareCriteria.Date_GraterThan_Left, str1, date1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Date_GraterThan_Left, date1, "100"); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Date_GraterThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Date_LessThan_Left, str1, date1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Date_LessThan_Left, date1, "100"); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Date_LessThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Date_GraterEqualThan_Left, str1, date1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Date_GraterEqualThan_Left, date1, "100"); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Date_GraterEqualThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Date_LessEqualThan_Left, str1, date1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Date_LessEqualThan_Left, date1, "100"); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Date_LessEqualThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
 
         //--------------------------------------------------------------------------------
         // 日時
@@ -351,18 +328,18 @@ public class CompareUtilsTest {
         assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Datetime_LessEqualThan_Left, datetime1, null));
         assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Datetime_LessEqualThan_Left, null, null));
         // parseエラー
-        try { CompareUtils.compareInCriteria(CompareCriteria.Datetime_GraterThan_Left, str1, datetime1); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Datetime_GraterThan_Left, datetime1, "100"); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Datetime_GraterThan_Left, str1, str1); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Datetime_LessThan_Left, str1, datetime1); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Datetime_LessThan_Left, datetime1, "100"); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Datetime_LessThan_Left, str1, str1); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Datetime_GraterEqualThan_Left, str1, datetime1); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Datetime_GraterEqualThan_Left, datetime1, "100"); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Datetime_GraterEqualThan_Left, str1, str1); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Datetime_LessEqualThan_Left, str1, datetime1); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Datetime_LessEqualThan_Left, datetime1, "100"); fail(); } catch (Exception e) {}
-        try { CompareUtils.compareInCriteria(CompareCriteria.Datetime_LessEqualThan_Left, str1, str1); fail(); } catch (Exception e) {}
+        try { CompareUtils.compareInCriteria(CompareCriteria.Datetime_GraterThan_Left, str1, datetime1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Datetime_GraterThan_Left, datetime1, "100"); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Datetime_GraterThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Datetime_LessThan_Left, str1, datetime1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Datetime_LessThan_Left, datetime1, "100"); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Datetime_LessThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Datetime_GraterEqualThan_Left, str1, datetime1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Datetime_GraterEqualThan_Left, datetime1, "100"); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Datetime_GraterEqualThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Datetime_LessEqualThan_Left, str1, datetime1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Datetime_LessEqualThan_Left, datetime1, "100"); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Datetime_LessEqualThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
     }
 
 }

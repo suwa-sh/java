@@ -1,21 +1,21 @@
 package me.suwash.util;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.IOException;
 
+import me.suwash.test.DefaultTestWatcher;
 import me.suwash.util.constant.UtilMessageConst;
 import me.suwash.util.exception.UtilException;
+import me.suwash.util.test.UtilTestWatcher;
 
 import org.apache.commons.lang.StringUtils;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.TestName;
 
 @lombok.extern.slf4j.Slf4j
 public class FileUtilsTest {
@@ -25,32 +25,11 @@ public class FileUtilsTest {
     private static final String CHARSET = "utf8";
 
     @Rule
-    public TestName name = new TestName();
-
-    @BeforeClass
-    public static void setUpBeforeClass() throws Exception {
-        log.debug("■■■ " + FileUtilsTest.class.getName() + " ■■■");
-    }
-
-    @AfterClass
-    public static void tearDownAfterClass() throws Exception {
-    }
-
-    @Before
-    public void setUp() throws Exception {
-        log.debug("■ " + name.getMethodName() + " - START");
-        log.debug(RuntimeUtils.getMemoryInfo());
-    }
-
-    @After
-    public void tearDown() throws Exception {
-        log.debug(RuntimeUtils.getMemoryInfo());
-        log.debug("■ " + name.getMethodName() + " - END");
-    }
+    public DefaultTestWatcher watcher = new UtilTestWatcher();
 
     @Test
     public void testReadCheck() {
-        final String dir = DIR_BASE + "/" + name.getMethodName();
+        final String dir = DIR_BASE + "/testReadCheck";
         final String existFilePath = dir + "/input.txt";
         final String notExistFilePath = dir + "/notexist.txt";
 
@@ -120,7 +99,7 @@ public class FileUtilsTest {
 
     @Test
     public void testReadCheckByClasspath() {
-        final String dir = CLASSPATH_BASE + "/" + name.getMethodName();
+        final String dir = CLASSPATH_BASE + "/testReadCheckByClasspath";
         final String existFilePath = dir + "/input.txt";
         final String notExistFilePath = dir + "/notexist.txt";
 
@@ -190,7 +169,7 @@ public class FileUtilsTest {
 
     @Test
     public void testWriteCheck() {
-        final String dir = DIR_BASE + "/" + name.getMethodName();
+        final String dir = DIR_BASE + "/testWriteCheck";
         final String existFilePath = dir + "/input.txt";
 
         String filePath;
@@ -252,7 +231,7 @@ public class FileUtilsTest {
         assertTrue("存在するディレクトリの場合、trueを返すこと", FileUtils.mkdirs(DIR_BASE));
 
         // ディレクトリを削除
-        final String dirPath = DIR_BASE + "/" + name.getMethodName();
+        final String dirPath = DIR_BASE + "/testMkdirs";
         File dir = new File(dirPath);
         if (dir.exists()) {
             dir.delete();
@@ -264,7 +243,7 @@ public class FileUtilsTest {
 
     @Test
     public void testSetupOverwrite() throws IOException {
-        final String dir = DIR_BASE + "/" + name.getMethodName();
+        final String dir = DIR_BASE + "/testSetupOverwrite";
         final String existFilePath = dir + "/input.txt";
         final String notExistFilePath = dir + "/notExist.txt";
         final String notExistDirPath = dir + "/notExist";

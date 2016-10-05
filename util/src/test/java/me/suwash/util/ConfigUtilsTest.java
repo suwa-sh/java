@@ -1,43 +1,20 @@
 package me.suwash.util;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.io.InputStreamReader;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import me.suwash.test.DefaultTestWatcher;
+import me.suwash.util.test.UtilTestWatcher;
+
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.TestName;
 
-@lombok.extern.slf4j.Slf4j
+//@lombok.extern.slf4j.Slf4j
 public class ConfigUtilsTest {
 
     @Rule
-    public TestName name = new TestName();
-
-    @BeforeClass
-    public static void setUpBeforeClass() throws Exception {
-        log.debug("■■■ " + ConfigUtilsTest.class.getName() + " ■■■");
-    }
-
-    @AfterClass
-    public static void tearDownAfterClass() throws Exception {
-    }
-
-    @Before
-    public void setUp() throws Exception {
-        log.debug("■ " + name.getMethodName() + " - START");
-        log.debug(RuntimeUtils.getMemoryInfo());
-    }
-
-    @After
-    public void tearDown() throws Exception {
-        log.debug(RuntimeUtils.getMemoryInfo());
-        log.debug("■ " + name.getMethodName() + " - END");
-    }
+    public DefaultTestWatcher watcher = new UtilTestWatcher();
 
     @Test
     public void testGetConfigFileClasspath() {

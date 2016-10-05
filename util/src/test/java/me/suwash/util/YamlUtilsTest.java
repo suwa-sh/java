@@ -1,6 +1,9 @@
 package me.suwash.util;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -8,17 +11,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import me.suwash.test.DefaultTestWatcher;
 import me.suwash.util.constant.UtilMessageConst;
 import me.suwash.util.exception.UtilException;
+import me.suwash.util.test.UtilTestWatcher;
 
 import org.apache.commons.lang.StringUtils;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.TestName;
 
 @lombok.extern.slf4j.Slf4j
 public class YamlUtilsTest {
@@ -28,28 +28,7 @@ public class YamlUtilsTest {
    private static final String INPUT_CHARSET = "utf8";
 
    @Rule
-   public TestName name = new TestName();
-
-   @BeforeClass
-   public static void setUpBeforeClass() throws Exception {
-       log.debug("■■■ " + YamlUtilsTest.class.getName() + " ■■■");
-   }
-
-   @AfterClass
-   public static void tearDownAfterClass() throws Exception {
-   }
-
-   @Before
-   public void setUp() throws Exception {
-       log.debug("■ " + name.getMethodName() + " - START");
-       log.debug(RuntimeUtils.getMemoryInfo());
-   }
-
-   @After
-   public void tearDown() throws Exception {
-       log.debug(RuntimeUtils.getMemoryInfo());
-       log.debug("■ " + name.getMethodName() + " - END");
-   }
+   public DefaultTestWatcher watcher = new UtilTestWatcher();
 
    @Test
    public void testParseString() {
@@ -101,7 +80,7 @@ public class YamlUtilsTest {
 
    @Test
    public void testParseFile() {
-       String dir = DIR_BASE + "/" + name.getMethodName();
+       String dir = DIR_BASE + "/testParseFile";
        String fileName = "input.yml";
 
        String inputFilePath = dir + "/" + fileName;
@@ -151,7 +130,7 @@ public class YamlUtilsTest {
 
    @Test
    public void testParseFileByClasspath() {
-       String dir = CLASSPATH_BASE + "/" + name.getMethodName();
+       String dir = CLASSPATH_BASE + "/testParseFileByClasspath";
        String fileName = "input.yml";
 
        String inputFilePath = dir + "/" + fileName;

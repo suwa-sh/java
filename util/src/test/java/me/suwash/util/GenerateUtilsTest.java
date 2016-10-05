@@ -1,23 +1,22 @@
 package me.suwash.util;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import me.suwash.test.DefaultTestWatcher;
 import me.suwash.util.constant.UtilMessageConst;
 import me.suwash.util.exception.UtilException;
+import me.suwash.util.test.UtilTestWatcher;
 
 import org.apache.commons.lang.StringUtils;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.TestName;
 
 @lombok.extern.slf4j.Slf4j
 public class GenerateUtilsTest {
@@ -27,29 +26,8 @@ public class GenerateUtilsTest {
     private static final String OUTPUT_CHARSET = "utf8";
     private static final String OUTPUT_LINESP = "\n";
 
-   @Rule
-   public TestName name = new TestName();
-
-   @BeforeClass
-   public static void setUpBeforeClass() throws Exception {
-       log.debug("■■■ " + GenerateUtilsTest.class.getName() + " ■■■");
-   }
-
-   @AfterClass
-   public static void tearDownAfterClass() throws Exception {
-   }
-
-   @Before
-   public void setUp() throws Exception {
-       log.debug("■ " + name.getMethodName() + " - START");
-       log.debug(RuntimeUtils.getMemoryInfo());
-   }
-
-   @After
-   public void tearDown() throws Exception {
-       log.debug(RuntimeUtils.getMemoryInfo());
-       log.debug("■ " + name.getMethodName() + " - END");
-   }
+    @Rule
+    public DefaultTestWatcher watcher = new UtilTestWatcher();
 
    @Test
    public void testTemplate2String() {
@@ -93,7 +71,7 @@ public class GenerateUtilsTest {
 
    @Test
    public void testVmPath2File() {
-       String templateDirPath = DIR_BASE + "/" + name.getMethodName();
+       String templateDirPath = DIR_BASE + "/testVmPath2File";
 
        List<String> templateDirPathList = null;
        String templateFileName = null;
@@ -171,7 +149,7 @@ public class GenerateUtilsTest {
 
    @Test
    public void testVmClasspath2File() {
-       String templateDirClasspath = CLASSPATH_BASE + "/" + name.getMethodName();
+       String templateDirClasspath = CLASSPATH_BASE + "/testVmClasspath2File";
        String templateFileName = StringUtils.EMPTY;
 
        List<String> templateDirPathList = new ArrayList<String>();
@@ -185,7 +163,7 @@ public class GenerateUtilsTest {
 
        String outputCharset = OUTPUT_CHARSET;
        String outputLineSp = OUTPUT_LINESP;
-       String outputFilePath = DIR_BASE + "/" + name.getMethodName() + "/actual/generated.txt";
+       String outputFilePath = DIR_BASE + "/testVmClasspath2File/actual/generated.txt";
 
        try {
            templateFileName = "notExist.vm";
@@ -218,7 +196,7 @@ public class GenerateUtilsTest {
 
        String outputCharset = OUTPUT_CHARSET;
        String outputLineSp = OUTPUT_LINESP;
-       String outputFilePath = DIR_BASE + "/" + name.getMethodName() + "/actual/notExist.txt";
+       String outputFilePath = DIR_BASE + "/testVmClasspath2File_withCommonTemplate/actual/notExist.txt";
 
        try {
            templateFileName = "notExist.vm";

@@ -1,46 +1,24 @@
 package me.suwash.util;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import me.suwash.test.DefaultTestWatcher;
+import me.suwash.util.test.UtilTestWatcher;
+
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.TestName;
 
 @lombok.extern.slf4j.Slf4j
 public class Base64SerializeUtilsTest {
 
     @Rule
-    public TestName name = new TestName();
-
-    @BeforeClass
-    public static void setUpBeforeClass() throws Exception {
-        log.debug("■■■ " + Base64SerializeUtilsTest.class.getName() + " ■■■");
-    }
-
-    @AfterClass
-    public static void tearDownAfterClass() throws Exception {
-    }
-
-    @Before
-    public void setUp() throws Exception {
-        log.debug("■ " + name.getMethodName() + " - START");
-        log.debug(RuntimeUtils.getMemoryInfo());
-    }
-
-    @After
-    public void tearDown() throws Exception {
-        log.debug(RuntimeUtils.getMemoryInfo());
-        log.debug("■ " + name.getMethodName() + " - END");
-    }
+    public DefaultTestWatcher watcher = new UtilTestWatcher();
 
     @Test
     public void test() {

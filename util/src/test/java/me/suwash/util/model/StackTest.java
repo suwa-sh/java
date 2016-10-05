@@ -1,42 +1,20 @@
 package me.suwash.util.model;
 
-import static org.junit.Assert.*;
-import me.suwash.util.RuntimeUtils;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import me.suwash.test.DefaultTestWatcher;
+import me.suwash.util.test.UtilTestWatcher;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.TestName;
 
 @lombok.extern.slf4j.Slf4j
 public class StackTest {
 
     @Rule
-    public TestName name = new TestName();
-
-    @BeforeClass
-    public static void setUpBeforeClass() throws Exception {
-        log.debug("■■■ " + StackTest.class.getName() + " ■■■");
-    }
-
-    @AfterClass
-    public static void tearDownAfterClass() throws Exception {
-    }
-
-    @Before
-    public void setUp() throws Exception {
-        log.debug("■ " + name.getMethodName() + " - START");
-        log.debug(RuntimeUtils.getMemoryInfo());
-    }
-
-    @After
-    public void tearDown() throws Exception {
-        log.debug(RuntimeUtils.getMemoryInfo());
-        log.debug("■ " + name.getMethodName() + " - END");
-    }
+    public DefaultTestWatcher watcher = new UtilTestWatcher();
 
     @Test
     public void test() {

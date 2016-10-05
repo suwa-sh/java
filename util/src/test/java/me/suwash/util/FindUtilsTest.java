@@ -3,15 +3,12 @@ package me.suwash.util;
 import java.io.File;
 import java.util.List;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import me.suwash.test.DefaultTestWatcher;
+import me.suwash.util.FindUtils.FileType;
+import me.suwash.util.test.UtilTestWatcher;
+
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.TestName;
-
-import me.suwash.util.FindUtils.FileType;
 
 @lombok.extern.slf4j.Slf4j
 public class FindUtilsTest {
@@ -19,28 +16,7 @@ public class FindUtilsTest {
    private static final String DIR_BASE = "src/test/resources";
 
    @Rule
-   public TestName name = new TestName();
-
-   @BeforeClass
-   public static void setUpBeforeClass() throws Exception {
-       log.debug("■■■ " + FindUtilsTest.class.getName() + " ■■■");
-   }
-
-   @AfterClass
-   public static void tearDownAfterClass() throws Exception {
-   }
-
-   @Before
-   public void setUp() throws Exception {
-       log.debug("■ " + name.getMethodName() + " - START");
-       log.debug(RuntimeUtils.getMemoryInfo());
-   }
-
-   @After
-   public void tearDown() throws Exception {
-       log.debug(RuntimeUtils.getMemoryInfo());
-       log.debug("■ " + name.getMethodName() + " - END");
-   }
+   public DefaultTestWatcher watcher = new UtilTestWatcher();
 
    @Test
    public void testFind() {

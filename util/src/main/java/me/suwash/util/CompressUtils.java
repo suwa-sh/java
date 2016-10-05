@@ -39,7 +39,7 @@ public final class CompressUtils {
      * @param paraOutputFilePath 出力ファイルパス
      * @param isRelative 相対パスで圧縮するか？
      */
-    public static void compressTarGz(final String targetDirPath, final String paraOutputFilePath, final boolean isRelative) {
+    public static void tarGz(final String targetDirPath, final String paraOutputFilePath, final boolean isRelative) {
         // --------------------------------------------------
         // 入力チェック
         // --------------------------------------------------
@@ -63,10 +63,10 @@ public final class CompressUtils {
         // --------------------------------------------------
         // tar圧縮
         final String tarFilePath = outputFilePath.replace(".tar.gz", ".tar");
-        compressTar(targetDirPath, tarFilePath, isRelative);
+        tar(targetDirPath, tarFilePath, isRelative);
 
         // gzip圧縮
-        compressGz(tarFilePath, outputFilePath);
+        gzip(tarFilePath, outputFilePath);
 
         // tarファイル削除
         final File tarFile = new File(tarFilePath);
@@ -83,7 +83,7 @@ public final class CompressUtils {
      * @param targetFilePath 対象ファイルパス
      * @param paraOutputFilePath 出力ファイルパス
      */
-    public static void compressGz(final String targetFilePath, final String paraOutputFilePath) {
+    public static void gzip(final String targetFilePath, final String paraOutputFilePath) {
         // --------------------------------------------------
         // 入力チェック
         // --------------------------------------------------
@@ -203,7 +203,7 @@ public final class CompressUtils {
      * @param paraOutputFilePath 出力ファイルパス
      * @param isRelative 相対パスで圧縮するか？
      */
-    public static void compressTar(final String targetDirPath, final String paraOutputFilePath, final boolean isRelative) {
+    public static void tar(final String targetDirPath, final String paraOutputFilePath, final boolean isRelative) {
         // --------------------------------------------------
         // 入力チェック
         // --------------------------------------------------

@@ -181,9 +181,6 @@
                     <minimumTokens>100</minimumTokens>
                     <excludes>
                         <exclude>**/*Exception.java</exclude>
-                        <exclude>**/gen/classification/ClassificationConfig.java</exclude>
-                        <exclude>**/gen/classification/ClassificationValue.java</exclude>
-                        <exclude>**/gen/classification/ClassificationValueGroup.java</exclude>
 <!--
                         <exclude>**/i18n/*.java</exclude>
                         <exclude>**/model/*.java</exclude>

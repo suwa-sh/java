@@ -1,3 +1,0 @@
-#foreach( ${elem} in ${content} )
-${elem}
-#end

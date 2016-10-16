@@ -10,7 +10,7 @@ DIR_LOG=${DIR_SCRIPT}/log
 FILE_LOG=`basename $0 .sh`.log
 PATH_LOG=${DIR_LOG}/${FILE_LOG}
 
-EXEC_CMD="mvn clean install site -Dpid=$$"
+EXEC_CMD="mvn clean install site -DPID=$$"
 
 
 #--------------------------------------------------

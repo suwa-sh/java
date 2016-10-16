@@ -1,0 +1,273 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>me.suwash.commons</groupId>
+        <artifactId>parent</artifactId>
+        <version>0.1.0</version>
+        <relativePath>../parent</relativePath>
+    </parent>
+
+    <artifactId>gen-resource</artifactId>
+    <version>1.0.0</version>
+    <name>Resource Generator</name>
+    <description>リソース自動生成ツール</description>
+
+    <properties>
+        <dirname.assembly.work>${project.artifactId}_${project.version}</dirname.assembly.work>
+        <dir.assembly.work>${project.build.directory}/${dirname.assembly.work}</dir.assembly.work>
+    </properties>
+
+    <distributionManagement>
+        <repository>
+            <id>internal.repo</id>
+            <name>Temporary Staging Repository</name>
+            <url>file://${project.build.directory}/mvn-repo</url>
+        </repository>
+    </distributionManagement>
+    <profiles>
+
+        <profile>
+            <id>local</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <target.env>local</target.env>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>IT</id>
+            <properties>
+                <target.env>IT</target.env>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>ST</id>
+            <properties>
+                <target.env>ST</target.env>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>production</id>
+            <properties>
+                <target.env>production</target.env>
+            </properties>
+        </profile>
+
+    </profiles>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${java.encoding}</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.github.github</groupId>
+                <artifactId>site-maven-plugin</artifactId>
+                <version>0.11</version>
+                <configuration>
+                    <merge>true</merge>
+                    <message>Maven artifacts for ${project.version}</message>
+                    <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
+                    <includes>
+                        <include>**/*</include>
+                    </includes>
+                    <repositoryName>${github.repository.name}</repositoryName>
+                    <repositoryOwner>${github.repository.owner}</repositoryOwner>
+                    <branch>${github.repository.branch}</branch>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>site</goal>
+                        </goals>
+                        <phase>deploy</phase>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${dir.assembly.work}/lib</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>create assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <!-- 実行ファイル -->
+                                <copy todir="${dir.assembly.work}/lib">
+                                    <fileset dir="${project.build.directory}">
+                                        <include name="${project.artifactId}-${project.version}.jar" />
+                                    </fileset>
+                                </copy>
+                                <!-- 実行スクリプト -->
+                                <mkdir dir="${dir.assembly.work}/bin" />
+                                <copy todir="${dir.assembly.work}/bin"
+                                    overwrite="yes" encoding="UTF-8">
+                                    <fileset dir="${project.build.scriptSourceDirectory}/bin">
+                                        <include name="**/**" />
+                                    </fileset>
+                                    <filterset filtersfile="env/${target.env}/filter.properties" />
+                                </copy>
+                                <!-- 設定ファイル -->
+                                <mkdir dir="${dir.assembly.work}/config" />
+                                <copy todir="${dir.assembly.work}/config"
+                                    overwrite="yes" encoding="UTF-8">
+                                    <fileset dir="${project.build.scriptSourceDirectory}/config">
+                                        <include name="**/**" />
+                                    </fileset>
+                                    <filterset filtersfile="env/${target.env}/filter.properties" />
+                                </copy>
+                                <!-- 不要ファイルの削除 -->
+                                <delete>
+                                    <fileset dir="${dir.assembly.work}">
+                                        <include name="**/.gitkeep" />
+                                        <include name="lib/junit*.jar" />
+                                        <include name="lib/test*.jar" />
+                                    </fileset>
+                                </delete>
+                                <!-- changelogファイル -->
+                                <copy todir="${dir.assembly.work}"
+                                    overwrite="yes" encoding="UTF-8">
+                                    <fileset dir="${project.build.scriptSourceDirectory}">
+                                        <include name="changelog.txt" />
+                                    </fileset>
+                                </copy>
+                                <!-- バージョンファイル -->
+                                <echo message="${project.version}_${target.env}"
+                                    file="${dir.assembly.work}/version.txt"
+                                    encoding="UTF-8" />
+                                <!-- 配布用zip -->
+                                <tar
+                                    destfile="${project.build.directory}/${project.artifactId}_${project.version}_${target.env}.tar.gz"
+                                    basedir="${project.build.directory}"
+                                    includes="${dirname.assembly.work}/**"
+                                    compression="gzip" />
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>me.suwash.commons</groupId>
+            <artifactId>test</artifactId>
+            <version>[1.0.0,)</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>me.suwash.commons</groupId>
+            <artifactId>util</artifactId>
+            <version>[1.0.0,)</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.validation</groupId>
+                    <artifactId>validation-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.hibernate</groupId>
+                    <artifactId>hibernate-validator</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>javax.el</groupId>
+                    <artifactId>el-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.glassfish.web</groupId>
+                    <artifactId>el-impl</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+    </dependencies>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>${maven-pmd-plugin.version}</version>
+                <configuration>
+                    <targetJdk>${java.version}</targetJdk>
+                    <linkXref>true</linkXref>
+                    <minimumTokens>100</minimumTokens>
+                    <excludes>
+                        <exclude>**/*Exception.java</exclude>
+                        <exclude>**/gen/classification/ClassificationConfig.java</exclude>
+                        <exclude>**/gen/classification/ClassificationValue.java</exclude>
+                        <exclude>**/gen/classification/ClassificationValueGroup.java</exclude>
+                    </excludes>
+                    <rulesets>
+                        <ruleset>pmd/pmd.xml</ruleset>
+                    </rulesets>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
+
+</project>

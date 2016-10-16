@@ -1,0 +1,39 @@
+{
+  "id":"ProcessStatus",
+  "name":"処理ステータス",
+  "packageName":"me.suwash.gen.classification",
+  "values":[
+    {
+        "id":"Processing",
+        "name":"処理中",
+        "storeValue":"PRC"
+    },
+    {
+        "id":"Success",
+        "name":"成功",
+        "storeValue":"SCC"
+    },
+    {
+        "id":"Warning",
+        "name":"警告",
+        "storeValue":"WRN"
+    },
+    {
+        "id":"Failure",
+    }
+  ],
+  "groups":[
+    {
+        "id":"default",
+        "name":"デフォルト",
+        "values":["Processing", "Success", "Warning", "Failure"],
+        "defaultValue":"Processing"
+    },
+    {
+        "id":"finished",
+        "name":"終了ステータス",
+        "values":["Success", "Warning", "Failure"],
+        "defaultValue":"Success"
+    }
+  ]
+}

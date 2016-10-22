@@ -31,6 +31,11 @@ public enum ${classification.id} implements Classification {
     public static final String GROUP_${group.id.toUpperCase()} = "${group.id}";
 #end
 
+    /** データディクショナリID。 */
+    private String ddId;
+    /** 永続化値。 */
+    private String storeValue;
+
     static {
         // グループMap
         groupValuesMap = new HashMap<String, ${classification.id}[]>();
@@ -71,7 +76,7 @@ public enum ${classification.id} implements Classification {
      * @param group グループ名
      * @return デフォルトの区分値
      */
-    public static ${classification.id} defaultValue(String group) {
+    public static ${classification.id} defaultValue(final String group) {
         return groupDefaultMap.get(group);
     }
 
@@ -90,7 +95,7 @@ public enum ${classification.id} implements Classification {
      * @param group グループ名
      * @return 区分値配列
      */
-    public static ${classification.id}[] values(String group) {
+    public static ${classification.id}[] values(final String group) {
         return groupValuesMap.get(group);
     }
 
@@ -101,8 +106,8 @@ public enum ${classification.id} implements Classification {
      * @param ddId データディクショナリID
      * @return 区分値
      */
-    public static ${classification.id} valueOfByDdId(String ddId) {
-        for (${classification.id} curEnum : ${classification.id}.values()) {
+    public static ${classification.id} valueOfByDdId(final String ddId) {
+        for (final ${classification.id} curEnum : ${classification.id}.values()) {
             if (curEnum.ddId().equals(ddId)) {
                 return curEnum;
             }
@@ -117,8 +122,8 @@ public enum ${classification.id} implements Classification {
      * @param storeValue 永続化値
      * @return 区分値
      */
-    public static ${classification.id} valueOfByStoreValue(String storeValue) {
-        for (${classification.id} curEnum : ${classification.id}.values()) {
+    public static ${classification.id} valueOfByStoreValue(final String storeValue) {
+        for (final ${classification.id} curEnum : ${classification.id}.values()) {
             if (curEnum.storeValue().equals(storeValue)) {
                 return curEnum;
             }
@@ -132,8 +137,8 @@ public enum ${classification.id} implements Classification {
      * @param name 区分値名
      * @return 存在する場合 true
      */
-    public static boolean containsName(String name) {
-        for (${classification.id} curEnum : ${classification.id}.values()) {
+    public static boolean containsName(final String name) {
+        for (final ${classification.id} curEnum : ${classification.id}.values()) {
             if (curEnum.name().equals(name)) {
                 return true;
             }
@@ -148,8 +153,8 @@ public enum ${classification.id} implements Classification {
      * @param name 区分値名
      * @return 存在する場合 true
      */
-    public static boolean containsName(String group, String name) {
-        for (${classification.id} curEnum : ${classification.id}.values(group)) {
+    public static boolean containsName(final String group, final String name) {
+        for (final ${classification.id} curEnum : ${classification.id}.values(group)) {
             if (curEnum.name().equals(name)) {
                 return true;
             }
@@ -163,8 +168,8 @@ public enum ${classification.id} implements Classification {
      * @param ddId データディクショナリID
      * @return 存在する場合 true
      */
-    public static boolean containsDdId(String ddId) {
-        for (${classification.id} curEnum : ${classification.id}.values()) {
+    public static boolean containsDdId(final String ddId) {
+        for (final ${classification.id} curEnum : ${classification.id}.values()) {
             if (curEnum.ddId().equals(ddId)) {
                 return true;
             }
@@ -179,8 +184,8 @@ public enum ${classification.id} implements Classification {
      * @param ddId データディクショナリID
      * @return 存在する場合 true
      */
-    public static boolean containsDdId(String group, String ddId) {
-        for (${classification.id} curEnum : ${classification.id}.values(group)) {
+    public static boolean containsDdId(final String group, final String ddId) {
+        for (final ${classification.id} curEnum : ${classification.id}.values(group)) {
             if (curEnum.ddId().equals(ddId)) {
                 return true;
             }
@@ -194,8 +199,8 @@ public enum ${classification.id} implements Classification {
      * @param storeValue 永続化値
      * @return 存在する場合 true
      */
-    public static boolean containsStoreValue(String storeValue) {
-        for (${classification.id} curEnum : ${classification.id}.values()) {
+    public static boolean containsStoreValue(final String storeValue) {
+        for (final ${classification.id} curEnum : ${classification.id}.values()) {
             if (curEnum.storeValue().equals(storeValue)) {
                 return true;
             }
@@ -210,8 +215,8 @@ public enum ${classification.id} implements Classification {
      * @param storeValue 永続化値
      * @return 存在する場合 true
      */
-    public static boolean containsStoreValue(String group, String storeValue) {
-        for (${classification.id} curEnum : ${classification.id}.values(group)) {
+    public static boolean containsStoreValue(final String group, final String storeValue) {
+        for (final ${classification.id} curEnum : ${classification.id}.values(group)) {
             if (curEnum.storeValue().equals(storeValue)) {
                 return true;
             }
@@ -219,18 +224,12 @@ public enum ${classification.id} implements Classification {
         return false;
     }
 
-
-    /** データディクショナリID。 */
-    private String ddId;
-    /** 永続化値。 */
-    private String storeValue;
-
     /**
      * コンストラクタ。
      *
      * @param storeValue 永続化値
      */
-    private ${classification.id}(String storeValue) {
+    private ${classification.id}(final String storeValue) {
         this.ddId = this.getClass().getSimpleName() + "." + name();
         this.storeValue = storeValue;
     }

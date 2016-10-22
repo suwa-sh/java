@@ -31,6 +31,11 @@ public enum ProcessStatus implements Classification {
     /** グループ：終了ステータス。 */
     public static final String GROUP_FINISHED = "finished";
 
+    /** データディクショナリID。 */
+    private String ddId;
+    /** 永続化値。 */
+    private String storeValue;
+
     static {
         // グループMap
         groupValuesMap = new HashMap<String, ProcessStatus[]>();
@@ -70,7 +75,7 @@ public enum ProcessStatus implements Classification {
      * @param group グループ名
      * @return デフォルトの区分値
      */
-    public static ProcessStatus defaultValue(String group) {
+    public static ProcessStatus defaultValue(final String group) {
         return groupDefaultMap.get(group);
     }
 
@@ -89,7 +94,7 @@ public enum ProcessStatus implements Classification {
      * @param group グループ名
      * @return 区分値配列
      */
-    public static ProcessStatus[] values(String group) {
+    public static ProcessStatus[] values(final String group) {
         return groupValuesMap.get(group);
     }
 
@@ -100,8 +105,8 @@ public enum ProcessStatus implements Classification {
      * @param ddId データディクショナリID
      * @return 区分値
      */
-    public static ProcessStatus valueOfByDdId(String ddId) {
-        for (ProcessStatus curEnum : ProcessStatus.values()) {
+    public static ProcessStatus valueOfByDdId(final String ddId) {
+        for (final ProcessStatus curEnum : ProcessStatus.values()) {
             if (curEnum.ddId().equals(ddId)) {
                 return curEnum;
             }
@@ -116,8 +121,8 @@ public enum ProcessStatus implements Classification {
      * @param storeValue 永続化値
      * @return 区分値
      */
-    public static ProcessStatus valueOfByStoreValue(String storeValue) {
-        for (ProcessStatus curEnum : ProcessStatus.values()) {
+    public static ProcessStatus valueOfByStoreValue(final String storeValue) {
+        for (final ProcessStatus curEnum : ProcessStatus.values()) {
             if (curEnum.storeValue().equals(storeValue)) {
                 return curEnum;
             }
@@ -131,8 +136,8 @@ public enum ProcessStatus implements Classification {
      * @param name 区分値名
      * @return 存在する場合 true
      */
-    public static boolean containsName(String name) {
-        for (ProcessStatus curEnum : ProcessStatus.values()) {
+    public static boolean containsName(final String name) {
+        for (final ProcessStatus curEnum : ProcessStatus.values()) {
             if (curEnum.name().equals(name)) {
                 return true;
             }
@@ -147,8 +152,8 @@ public enum ProcessStatus implements Classification {
      * @param name 区分値名
      * @return 存在する場合 true
      */
-    public static boolean containsName(String group, String name) {
-        for (ProcessStatus curEnum : ProcessStatus.values(group)) {
+    public static boolean containsName(final String group, final String name) {
+        for (final ProcessStatus curEnum : ProcessStatus.values(group)) {
             if (curEnum.name().equals(name)) {
                 return true;
             }
@@ -162,8 +167,8 @@ public enum ProcessStatus implements Classification {
      * @param ddId データディクショナリID
      * @return 存在する場合 true
      */
-    public static boolean containsDdId(String ddId) {
-        for (ProcessStatus curEnum : ProcessStatus.values()) {
+    public static boolean containsDdId(final String ddId) {
+        for (final ProcessStatus curEnum : ProcessStatus.values()) {
             if (curEnum.ddId().equals(ddId)) {
                 return true;
             }
@@ -178,8 +183,8 @@ public enum ProcessStatus implements Classification {
      * @param ddId データディクショナリID
      * @return 存在する場合 true
      */
-    public static boolean containsDdId(String group, String ddId) {
-        for (ProcessStatus curEnum : ProcessStatus.values(group)) {
+    public static boolean containsDdId(final String group, final String ddId) {
+        for (final ProcessStatus curEnum : ProcessStatus.values(group)) {
             if (curEnum.ddId().equals(ddId)) {
                 return true;
             }
@@ -193,8 +198,8 @@ public enum ProcessStatus implements Classification {
      * @param storeValue 永続化値
      * @return 存在する場合 true
      */
-    public static boolean containsStoreValue(String storeValue) {
-        for (ProcessStatus curEnum : ProcessStatus.values()) {
+    public static boolean containsStoreValue(final String storeValue) {
+        for (final ProcessStatus curEnum : ProcessStatus.values()) {
             if (curEnum.storeValue().equals(storeValue)) {
                 return true;
             }
@@ -209,8 +214,8 @@ public enum ProcessStatus implements Classification {
      * @param storeValue 永続化値
      * @return 存在する場合 true
      */
-    public static boolean containsStoreValue(String group, String storeValue) {
-        for (ProcessStatus curEnum : ProcessStatus.values(group)) {
+    public static boolean containsStoreValue(final String group, final String storeValue) {
+        for (final ProcessStatus curEnum : ProcessStatus.values(group)) {
             if (curEnum.storeValue().equals(storeValue)) {
                 return true;
             }
@@ -218,18 +223,12 @@ public enum ProcessStatus implements Classification {
         return false;
     }
 
-
-    /** データディクショナリID。 */
-    private String ddId;
-    /** 永続化値。 */
-    private String storeValue;
-
     /**
      * コンストラクタ。
      *
      * @param storeValue 永続化値
      */
-    private ProcessStatus(String storeValue) {
+    private ProcessStatus(final String storeValue) {
         this.ddId = this.getClass().getSimpleName() + "." + name();
         this.storeValue = storeValue;
     }

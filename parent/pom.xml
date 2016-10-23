@@ -249,7 +249,7 @@
                 <version>${maven-checkstyle-plugin.version}</version>
                 <dependencies>
                     <dependency>
-                        <groupId>me.suwash</groupId>
+                        <groupId>me.suwash.commons</groupId>
                         <artifactId>checks</artifactId>
                         <version>0.1.0</version>
                     </dependency>
@@ -262,7 +262,7 @@
                 <version>${maven-pmd-plugin.version}</version>
                 <dependencies>
                     <dependency>
-                        <groupId>me.suwash</groupId>
+                        <groupId>me.suwash.commons</groupId>
                         <artifactId>checks</artifactId>
                         <version>0.1.0</version>
                     </dependency>

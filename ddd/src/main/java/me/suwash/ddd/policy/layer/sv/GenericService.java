@@ -7,8 +7,8 @@ import me.suwash.ddd.policy.Output;
 /**
  * サービス層のLayerSuperType基底クラス。
  *
- * @param <I> InBean
- * @param <O> OutBean
+ * @param <I> 入力データモデル
+ * @param <O> 出力データモデル
  */
 public abstract class GenericService<I extends Input, O extends Output<I>> extends GenericLayerSuperType<I, O> implements Service<I, O> {
 }

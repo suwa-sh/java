@@ -4,12 +4,12 @@
 #--------------------------------------------------
 # 変数定義
 #--------------------------------------------------
-DIR_SCRIPT=`dirname $0`
+DIR_SCRIPT=`cd $(dirname $0); pwd`
 DIR_LOG=${DIR_SCRIPT}/log
 FILE_LOG=`basename $0 .sh`.log
 PATH_LOG=${DIR_LOG}/${FILE_LOG}
 
-EXEC_CMD="mvn clean site cobertura:cobertura install"
+EXEC_CMD="mvn clean site deploy"
 
 
 #--------------------------------------------------

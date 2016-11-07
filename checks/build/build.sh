@@ -1,15 +1,16 @@
-#!/bin/sh
+#!/bin/bash
 #================================================================================
+# build
 #================================================================================
 #--------------------------------------------------
 # 変数定義
 #--------------------------------------------------
-DIR_SCRIPT=`dirname $0`
+DIR_SCRIPT=$(cd $(dirname $0); pwd)
 DIR_LOG=${DIR_SCRIPT}/log
 FILE_LOG=`basename $0 .sh`.log
 PATH_LOG=${DIR_LOG}/${FILE_LOG}
 
-EXEC_CMD="mvn clean site deploy"
+EXEC_CMD="mvn clean install site -DPID=$$"
 
 
 #--------------------------------------------------
@@ -26,7 +27,7 @@ fi
 #--------------------------------------------------
 cd ..
 echo ${EXEC_CMD} | tee -a ${PATH_LOG}
-${EXEC_CMD} >> ${PATH_LOG} 2>&1
+${EXEC_CMD} 2>&1 | tee -a ${PATH_LOG} 2>&1
 if [ $? -ne 0 ]; then
     echo build failure ${PATH_LOG} | tee -a ${PATH_LOG}
     exit 1

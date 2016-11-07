@@ -12,6 +12,7 @@ import me.suwash.ddd.classification.ProcessStatus;
  * @param <I> 入力データモデル
  * @param <O> 出力データモデル
  */
+@lombok.extern.slf4j.Slf4j
 public abstract class GenericLayerSuperType<I extends Input, O extends Output<I>> implements LayerSuperType<I, O> {
 
     /* (非 Javadoc)
@@ -20,7 +21,9 @@ public abstract class GenericLayerSuperType<I extends Input, O extends Output<I>
     @Override
     public O execute(final I input) {
         // validate
+        log.debug("START validate");
         final Set<ConstraintViolation<I>> violationSet = validate(input);
+        log.debug("END   validate");
         if (! violationSet.isEmpty()) {
             final O validateOutput = getOutput(input);
             validateOutput.setViolationSet(violationSet);
@@ -29,19 +32,26 @@ public abstract class GenericLayerSuperType<I extends Input, O extends Output<I>
         }
 
         // preExecute
+        log.debug("START preExecute");
         final O preExecuteOutput = preExecute(input);
+        log.debug("END   preExecute");
         if (ProcessStatus.Failure.equals(preExecuteOutput.getProcessStatus())) {
             return preExecuteOutput;
         }
 
         // main
+        log.debug("START mainExecute");
         final O mainExecuteOutput = mainExecute(input, preExecuteOutput);
+        log.debug("END   mainExecute");
         if (ProcessStatus.Failure.equals(mainExecuteOutput.getProcessStatus())) {
             return mainExecuteOutput;
         }
 
         // postExecute
-        return postExecute(input, mainExecuteOutput);
+        log.debug("START postExecute");
+        final O postExecuteOutput = postExecute(input, mainExecuteOutput);
+        log.debug("END   postExecute");
+        return postExecuteOutput;
     }
 
     /**

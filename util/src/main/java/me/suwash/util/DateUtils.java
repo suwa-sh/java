@@ -12,7 +12,7 @@ import me.suwash.util.exception.UtilException;
 import me.suwash.util.i18n.DdSource;
 import me.suwash.util.i18n.MessageSource;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * 日付関連ユーティリティ。
@@ -179,7 +179,9 @@ public final class DateUtils {
                 cal.set(Calendar.MILLISECOND, intMilleSeconds);
                 break;
             default:
-                throw new IllegalArgumentException("Unparseable date:" + formattedStrDate);
+                throw new UtilException(UtilMessageConst.UNSUPPORTED_PATTERN, new Object[] {
+                    DateUtils.class.getName() + ".format", formattedStrDate
+                });
         }
 
         return cal;

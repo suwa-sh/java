@@ -15,6 +15,7 @@ public class DefaultTestWatcher extends TestWatcher {
      */
     @Override
     protected void starting(final Description description) {
+        System.setProperty("org.jboss.logging.provider", "slf4j");
         log.debug("◼◼ " + description.getTestClass().getSimpleName() + "#" + description.getMethodName() + " Started.");
     }
 

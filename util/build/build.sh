@@ -10,7 +10,9 @@ DIR_LOG=${DIR_SCRIPT}/log
 FILE_LOG=`basename $0 .sh`.log
 PATH_LOG=${DIR_LOG}/${FILE_LOG}
 
-EXEC_CMD="mvn clean install site -DPID=$$"
+readonly SONAR_URL="https://sonarcloud.io"
+readonly SONAR_ORGANIZATION="suwa-sh-github"
+readonly SONAR_EXCLUDES="src/test/**,**/gen/**,**/*Exception.java"
 
 
 #--------------------------------------------------
@@ -26,9 +28,23 @@ fi
 # 主処理
 #--------------------------------------------------
 cd ..
-echo ${EXEC_CMD} | tee -a ${PATH_LOG}
-${EXEC_CMD} 2>&1 | tee -a ${PATH_LOG} 2>&1
-if [ $? -ne 0 ]; then
+if [[ "${SONAR_TOKEN}x" = "x" ]]; then
+  echo "SONAR_TOKEN が定義されていません。sonar解析をスキップします。"
+  EXEC_CMD="mvn clean install site -DPID=$$"
+  echo ${EXEC_CMD} | tee -a ${PATH_LOG}
+  ${EXEC_CMD} 2>&1 | tee -a ${PATH_LOG} 2>&1
+
+else
+  EXEC_CMD="mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install site sonar:sonar -DPID=$$"
+  echo ${EXEC_CMD} | tee -a ${PATH_LOG}
+  ${EXEC_CMD}                                                                                      \
+    -Dsonar.host.url=${SONAR_URL}                                                                  \
+    -Dsonar.organization=${SONAR_ORGANIZATION}                                                     \
+    -Dsonar.login=${SONAR_TOKEN}                                                                   \
+    -Dsonar.exclusions="${SONAR_EXCLUDES}" 2>&1 | tee -a ${PATH_LOG} 2>&1
+fi
+retcode=$?
+if [ ${retcode} -ne 0 ]; then
     echo build failure ${PATH_LOG} | tee -a ${PATH_LOG}
     exit 1
 fi

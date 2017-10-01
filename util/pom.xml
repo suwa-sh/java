@@ -10,7 +10,7 @@
 
     <artifactId>util</artifactId>
     <version>1.1.0</version>
-    <name>suwa-sh Commons Util</name>
+    <name>suwa-sh-commons-util</name>
     <description>共通ユーティリティライブラリ</description>
 
     <properties>

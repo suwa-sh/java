@@ -26,7 +26,7 @@ fi
 #--------------------------------------------------
 cd ..
 echo ${EXEC_CMD} | tee -a ${PATH_LOG}
-${EXEC_CMD} >> ${PATH_LOG} 2>&1
+${EXEC_CMD} 2>&1 | tee -a ${PATH_LOG}
 if [ $? -ne 0 ]; then
     echo build failure ${PATH_LOG} | tee -a ${PATH_LOG}
     exit 1

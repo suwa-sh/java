@@ -6,15 +6,22 @@
 
 <suppressions>
     <!-- Suppress checks for test code. -->
-    <suppress checks=".*" files="src[\\/]test[\\/]java[\\/]" />
+    <suppress
+      files="src[\\/]test[\\/]java[\\/]"
+      checks=".*" />
 
     <!-- Suppress checks for generated code. -->
-    <suppress files="[/\\]target[/\\]" checks=".+" />
+    <suppress
+      files="[/\\]target[/\\]"
+      checks=".+" />
 
     <!-- Suppress checks for hidden files and folders. -->
-    <suppress files="[/\\]\..+" checks=".+" />
+    <suppress
+      files="[/\\]\..+"
+      checks=".+" />
 
     <!-- Suppress checks for archive and class files. -->
-    <suppress files=".+\.(?:jar|zip|war|ear|sar|par|class|ser)$"
-        checks=".+" />
+    <suppress
+      files=".+\.(?:jar|zip|war|ear|sar|par|class|ser)$"
+      checks=".+" />
 </suppressions>

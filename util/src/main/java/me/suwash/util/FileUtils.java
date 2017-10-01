@@ -184,7 +184,6 @@ public final class FileUtils {
         if (!dir.exists()) {
             return dir.mkdirs();
         }
-        // 既に存在する場合、true
         return true;
     }
 
@@ -203,8 +202,19 @@ public final class FileUtils {
                 return false;
             }
         }
-        // 存在しない場合、true
         return true;
+    }
+
+    /**
+     * 指定されたディレクトリを初期化します。
+     * ディレクトリが存在する場合、配下を再帰的に削除し、再作成します。
+     * ディレクトリが存在しない場合、親ディレクトリを再帰的に作成します。
+     *
+     * @param dirPath 対象ディレクトリ
+     */
+    public static void initDir(final String dirPath) {
+        rmdirs(dirPath);
+        mkdirs(dirPath);
     }
 
     /**
@@ -253,6 +263,23 @@ public final class FileUtils {
             throw new UtilException(UtilMessageConst.DIR_CHECK, new Object[] {
                 dir
             });
+        }
+    }
+
+    /**
+     * 新規空ファイルを作成します。
+     * ファイルが存在する場合、削除して再作成します。
+     * 配置ディレクトリが存在しない場合、親ディレクトリを再帰的に作成し、新規ファイルを作成します。
+     *
+     * @param filePath
+     */
+    public static void createNewFile(final String filePath) {
+        setupOverwrite(filePath);
+        final File file = new File(filePath);
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            throw new UtilException(UtilMessageConst.FILE_CANTWRITE, new Object[] { filePath }, e);
         }
     }
 

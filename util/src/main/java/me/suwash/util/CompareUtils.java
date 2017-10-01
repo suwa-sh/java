@@ -1,5 +1,6 @@
 package me.suwash.util;
 
+//import java.awt.Rectangle;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -216,12 +217,10 @@ public final class CompareUtils {
             // --------------------------------------------------------------------------------
             // その他（Bean）の場合
             // --------------------------------------------------------------------------------
-            // TODO Bean対応。
-            // リフレクションでsetterをループ。対応するgetterの内容を全て再帰的に比較。
-            // すぐには使わないので、一旦エラーにしておく
-            throw new UtilException(UtilMessageConst.UNSUPPORTED_PATTERN, new Object[] {
-                "deepCompare", left
-            });
+            // 一旦、JSON文字列化して比較
+            final String leftJson = JsonUtils.writeString(left);
+            final String rightJson = JsonUtils.writeString(right);
+            return leftJson.compareTo(rightJson);
         }
     }
 

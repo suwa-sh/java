@@ -34,45 +34,45 @@ public final class CompareUtils {
         NotEqual,
 
         /** 数値：左より大きい→OK。 */
-        Number_GraterThan_Left,
+        Number_GreaterThan_Left,
         /** 数値：左以上→OK。 */
-        Number_GraterEqualThan_Left,
+        Number_GreaterEqualThan_Left,
         /** 数値：左より小さい→OK。 */
         Number_LessThan_Left,
         /** 数値：左以下→OK。 */
         Number_LessEqualThan_Left,
 
         /** 年（yyyy）：左より大きい→OK。 */
-        Year_GraterThan_Left,
+        Year_GreaterThan_Left,
         /** 年（yyyy）：左以上→OK。 */
-        Year_GraterEqualThan_Left,
+        Year_GreaterEqualThan_Left,
         /** 年（yyyy）：左より小さい→OK。 */
         Year_LessThan_Left,
         /** 年（yyyy）：左以下→OK。 */
         Year_LessEqualThan_Left,
 
         /** 年月（yyyyMM）：左より大きい→OK。 */
-        Month_GraterThan_Left,
+        Month_GreaterThan_Left,
         /** 年月（yyyyMM）：左以上→OK。 */
-        Month_GraterEqualThan_Left,
+        Month_GreaterEqualThan_Left,
         /** 年月（yyyyMM）：左より小さい→OK。 */
         Month_LessThan_Left,
         /** 年月（yyyyMM）：左以上→OK。 */
         Month_LessEqualThan_Left,
 
         /** 年月日（yyyyMMdd, yyyy-MM-dd, yyyy/MM/dd）：左より大きい→OK。 */
-        Date_GraterThan_Left,
+        Date_GreaterThan_Left,
         /** 年月日（yyyyMMdd, yyyy-MM-dd, yyyy/MM/dd）：左以上→OK。 */
-        Date_GraterEqualThan_Left,
+        Date_GreaterEqualThan_Left,
         /** 年月日（yyyyMMdd, yyyy-MM-dd, yyyy/MM/dd）：左より小さい→OK。 */
         Date_LessThan_Left,
         /** 年月日（yyyyMMdd, yyyy-MM-dd, yyyy/MM/dd）：左以下→OK。 */
         Date_LessEqualThan_Left,
 
         /** 年月日時分秒（yyyyMMddHHmmss, yyyy-MM-dd HH:mm:ss, yyyy/MM/dd HH:mm:ss）：左より大きい→OK。 */
-        Datetime_GraterThan_Left,
+        Datetime_GreaterThan_Left,
         /** 年月日時分秒（yyyyMMddHHmmss, yyyy-MM-dd HH:mm:ss, yyyy/MM/dd HH:mm:ss）：左以上→OK。 */
-        Datetime_GraterEqualThan_Left,
+        Datetime_GreaterEqualThan_Left,
         /** 年月日時分秒（yyyyMMddHHmmss, yyyy-MM-dd HH:mm:ss, yyyy/MM/dd HH:mm:ss）：左より小さい→OK。 */
         Datetime_LessThan_Left,
         /** 年月日時分秒（yyyyMMddHHmmss, yyyy-MM-dd HH:mm:ss, yyyy/MM/dd HH:mm:ss）：左以下→OK。 */
@@ -254,11 +254,11 @@ public final class CompareUtils {
             case NotEqual:
                 returnVal = prvCompareNotEqual(left, right);
                 break;
-            case Number_GraterThan_Left:
-                returnVal = prvCompareNumGraterThan(left, right);
+            case Number_GreaterThan_Left:
+                returnVal = prvCompareNumGreaterThan(left, right);
                 break;
-            case Number_GraterEqualThan_Left:
-                returnVal = prvCompareNumGraterEqualThan(left, right);
+            case Number_GreaterEqualThan_Left:
+                returnVal = prvCompareNumGreaterEqualThan(left, right);
                 break;
             case Number_LessThan_Left:
                 returnVal = prvCompareNumLessThan(left, right);
@@ -266,11 +266,11 @@ public final class CompareUtils {
             case Number_LessEqualThan_Left:
                 returnVal = prvCompareNumLessEqualThan(left, right);
                 break;
-            case Year_GraterThan_Left:
-                returnVal = prvCompareYearGraterThan(left, right);
+            case Year_GreaterThan_Left:
+                returnVal = prvCompareYearGreaterThan(left, right);
                 break;
-            case Year_GraterEqualThan_Left:
-                returnVal = prvCompareYearGraterEqualThan(left, right);
+            case Year_GreaterEqualThan_Left:
+                returnVal = prvCompareYearGreaterEqualThan(left, right);
                 break;
             case Year_LessThan_Left:
                 returnVal = prvCompareYearLessThan(left, right);
@@ -278,11 +278,11 @@ public final class CompareUtils {
             case Year_LessEqualThan_Left:
                 returnVal = prvCompareYearLessEqualThan(left, right);
                 break;
-            case Month_GraterThan_Left:
-                returnVal = prvCompareMonthGraterThan(left, right);
+            case Month_GreaterThan_Left:
+                returnVal = prvCompareMonthGreaterThan(left, right);
                 break;
-            case Month_GraterEqualThan_Left:
-                returnVal = prvCompareMonthGraterEqualThan(left, right);
+            case Month_GreaterEqualThan_Left:
+                returnVal = prvCompareMonthGreaterEqualThan(left, right);
                 break;
             case Month_LessThan_Left:
                 returnVal = prvCompareMonthLessThan(left, right);
@@ -290,11 +290,11 @@ public final class CompareUtils {
             case Month_LessEqualThan_Left:
                 returnVal = prvCompareMonthLessEqualThan(left, right);
                 break;
-            case Date_GraterThan_Left:
-                returnVal = prvCompareDateGraterThan(left, right);
+            case Date_GreaterThan_Left:
+                returnVal = prvCompareDateGreaterThan(left, right);
                 break;
-            case Date_GraterEqualThan_Left:
-                returnVal = prvCompareDateGraterEqualThan(left, right);
+            case Date_GreaterEqualThan_Left:
+                returnVal = prvCompareDateGreaterEqualThan(left, right);
                 break;
             case Date_LessThan_Left:
                 returnVal = prvCompareDateLessThan(left, right);
@@ -302,11 +302,11 @@ public final class CompareUtils {
             case Date_LessEqualThan_Left:
                 returnVal = prvCompareDateLessEqualThan(left, right);
                 break;
-            case Datetime_GraterThan_Left:
-                returnVal = prvCompareDatetimeGraterThan(left, right);
+            case Datetime_GreaterThan_Left:
+                returnVal = prvCompareDatetimeGreaterThan(left, right);
                 break;
-            case Datetime_GraterEqualThan_Left:
-                returnVal = prvCompareDatetimeGraterEqualThan(left, right);
+            case Datetime_GreaterEqualThan_Left:
+                returnVal = prvCompareDatetimeGreaterEqualThan(left, right);
                 break;
             case Datetime_LessThan_Left:
                 returnVal = prvCompareDatetimeLessThan(left, right);
@@ -488,7 +488,7 @@ public final class CompareUtils {
      * @param right 右文字列
      * @return 比較結果
      */
-    private static CompareStatus prvCompareNumGraterThan(final String left, final String right) {
+    private static CompareStatus prvCompareNumGreaterThan(final String left, final String right) {
         if (!canConvertedCompare(left, right)) {
             return CompareStatus.NG;
         }
@@ -514,7 +514,7 @@ public final class CompareUtils {
      * @param right 右文字列
      * @return 比較結果
      */
-    private static CompareStatus prvCompareNumGraterEqualThan(final String left, final String right) {
+    private static CompareStatus prvCompareNumGreaterEqualThan(final String left, final String right) {
         if (!canConvertedCompare(left, right)) {
             return CompareStatus.NG;
         }
@@ -592,7 +592,7 @@ public final class CompareUtils {
      * @param right 右文字列
      * @return 比較結果
      */
-    private static CompareStatus prvCompareYearGraterThan(final String left, final String right) {
+    private static CompareStatus prvCompareYearGreaterThan(final String left, final String right) {
         if (!canConvertedCompare(left, right)) {
             return CompareStatus.NG;
         }
@@ -618,7 +618,7 @@ public final class CompareUtils {
      * @param right 右文字列
      * @return 比較結果
      */
-    private static CompareStatus prvCompareYearGraterEqualThan(final String left, final String right) {
+    private static CompareStatus prvCompareYearGreaterEqualThan(final String left, final String right) {
         if (!canConvertedCompare(left, right)) {
             return CompareStatus.NG;
         }
@@ -696,7 +696,7 @@ public final class CompareUtils {
      * @param right 右文字列
      * @return 比較結果
      */
-    private static CompareStatus prvCompareMonthGraterThan(final String left, final String right) {
+    private static CompareStatus prvCompareMonthGreaterThan(final String left, final String right) {
         if (!canConvertedCompare(left, right)) {
             return CompareStatus.NG;
         }
@@ -722,7 +722,7 @@ public final class CompareUtils {
      * @param right 右文字列
      * @return 比較結果
      */
-    private static CompareStatus prvCompareMonthGraterEqualThan(final String left, final String right) {
+    private static CompareStatus prvCompareMonthGreaterEqualThan(final String left, final String right) {
         if (!canConvertedCompare(left, right)) {
             return CompareStatus.NG;
         }
@@ -800,7 +800,7 @@ public final class CompareUtils {
      * @param right 右文字列
      * @return 比較結果
      */
-    private static CompareStatus prvCompareDateGraterThan(final String left, final String right) {
+    private static CompareStatus prvCompareDateGreaterThan(final String left, final String right) {
         if (!canConvertedCompare(left, right)) {
             return CompareStatus.NG;
         }
@@ -826,7 +826,7 @@ public final class CompareUtils {
      * @param right 右文字列
      * @return 比較結果
      */
-    private static CompareStatus prvCompareDateGraterEqualThan(final String left, final String right) {
+    private static CompareStatus prvCompareDateGreaterEqualThan(final String left, final String right) {
         if (!canConvertedCompare(left, right)) {
             return CompareStatus.NG;
         }
@@ -904,7 +904,7 @@ public final class CompareUtils {
      * @param right 右文字列
      * @return 比較結果
      */
-    private static CompareStatus prvCompareDatetimeGraterThan(final String left, final String right) {
+    private static CompareStatus prvCompareDatetimeGreaterThan(final String left, final String right) {
         if (!canConvertedCompare(left, right)) {
             return CompareStatus.NG;
         }
@@ -930,7 +930,7 @@ public final class CompareUtils {
      * @param right 右文字列
      * @return 比較結果
      */
-    private static CompareStatus prvCompareDatetimeGraterEqualThan(final String left, final String right) {
+    private static CompareStatus prvCompareDatetimeGreaterEqualThan(final String left, final String right) {
         if (!canConvertedCompare(left, right)) {
             return CompareStatus.NG;
         }

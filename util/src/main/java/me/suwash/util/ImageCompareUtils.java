@@ -63,12 +63,10 @@ public final class ImageCompareUtils {
     /**
      * 比較に対応している拡張子リストを返します。
      *
-     * @return 比較に体操している拡張子リスト
+     * @return 比較に対応している拡張子リスト
      */
     public static List<String> getAllowedExtList() {
-        List<String> returnList = new ArrayList<String>();
-        Collections.copy(returnList, allowedExtList);
-        return returnList;
+        return Collections.unmodifiableList(allowedExtList);
     }
 
     /**
@@ -89,12 +87,15 @@ public final class ImageCompareUtils {
      * @param ignoreAreaList 除外エリアリスト
      * @return 比較結果
      */
-//    public static DiffPoints compare(final BufferedImage leftImage, final BufferedImage rightImage, final List<Rectangle> ignoreAreaList) {
-    public static DiffAreas compare(final BufferedImage leftImage, final BufferedImage rightImage, final List<Rectangle> ignoreAreaList) {
+    public static DiffAreas compare(
+        final BufferedImage leftImage,
+        final BufferedImage rightImage,
+        final List<Rectangle> ignoreAreaList) {
+
         // 除外エリアが指定されている場合、左右の画像にマスクをかける
         final BufferedImage maskedLeftImage;
         final BufferedImage maskedRightImage;
-        if (ignoreAreaList != null && ignoreAreaList.size() != 0) {
+        if (ignoreAreaList != null && ! ignoreAreaList.isEmpty()) {
             final float alpha = 1.0f;
             maskedLeftImage = getMaskedImage(leftImage, ignoreAreaList, alpha);
             maskedRightImage = getMaskedImage(rightImage, ignoreAreaList, alpha);

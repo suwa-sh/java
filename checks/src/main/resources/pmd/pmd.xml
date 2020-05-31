@@ -20,13 +20,14 @@
   <rule ref="rulesets/java/codesize.xml"></rule>
   <rule ref="rulesets/java/coupling.xml"></rule>
   <rule ref="rulesets/java/strictexception.xml"></rule>
+
+  <rule ref="rulesets/java/javabeans.xml"></rule>
 -->
   <rule ref="rulesets/java/basic.xml"></rule>
   <rule ref="rulesets/java/braces.xml"></rule>
   <rule ref="rulesets/java/empty.xml"></rule>
   <rule ref="rulesets/java/finalizers.xml"></rule>
   <rule ref="rulesets/java/imports.xml"></rule>
-  <rule ref="rulesets/java/javabeans.xml"></rule>
   <rule ref="rulesets/java/optimizations.xml"></rule>
   <rule ref="rulesets/java/sunsecure.xml"></rule>
   <rule ref="rulesets/java/typeresolution.xml"></rule>

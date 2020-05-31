@@ -120,43 +120,43 @@ public class CompareUtilsTest {
         String num1 = "9223372036854775806.999999999999999999999999999999";
         String num2 = "9223372036854775807";
         String num3 = "9223372036854775808";
-        assertEquals("数値＜ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Number_GraterThan_Left, num1, num2));
-        assertEquals("数値＜ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Number_GraterThan_Left, num1, num2));
-        assertEquals("数値＜ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Number_GraterThan_Left, num1, num2));
-        assertEquals("数値＜ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Number_GraterThan_Left, num2, num2));
-        assertEquals("数値＜ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Number_GraterThan_Left, num2, num1));
+        assertEquals("数値＜ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Number_GreaterThan_Left, num1, num2));
+        assertEquals("数値＜ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Number_GreaterThan_Left, num1, num2));
+        assertEquals("数値＜ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Number_GreaterThan_Left, num1, num2));
+        assertEquals("数値＜ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Number_GreaterThan_Left, num2, num2));
+        assertEquals("数値＜ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Number_GreaterThan_Left, num2, num1));
         assertEquals("数値＞ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Number_LessThan_Left, num2, num1));
         assertEquals("数値＞ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Number_LessThan_Left, num2, num2));
         assertEquals("数値＞ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Number_LessThan_Left, num1, num2));
-        assertEquals("数値＜＝ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Number_GraterEqualThan_Left, num2, num3));
-        assertEquals("数値＜＝ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Number_GraterEqualThan_Left, num2, num2));
-        assertEquals("数値＜＝ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Number_GraterEqualThan_Left, num2, num1));
+        assertEquals("数値＜＝ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Number_GreaterEqualThan_Left, num2, num3));
+        assertEquals("数値＜＝ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Number_GreaterEqualThan_Left, num2, num2));
+        assertEquals("数値＜＝ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Number_GreaterEqualThan_Left, num2, num1));
         assertEquals("数値＞＝ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Number_LessEqualThan_Left, num2, num1));
         assertEquals("数値＞＝ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Number_LessEqualThan_Left, num2, num2));
         assertEquals("数値＞＝ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Number_LessEqualThan_Left, num2, num3));
         // nullチェック
-        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Number_GraterThan_Left, null, num1));
-        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Number_GraterThan_Left, num1, null));
-        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Number_GraterThan_Left, null, null));
+        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Number_GreaterThan_Left, null, num1));
+        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Number_GreaterThan_Left, num1, null));
+        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Number_GreaterThan_Left, null, null));
         assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Number_LessThan_Left, null, num1));
         assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Number_LessThan_Left, num1, null));
         assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Number_LessThan_Left, null, null));
-        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Number_GraterEqualThan_Left, null, num1));
-        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Number_GraterEqualThan_Left, num1, null));
-        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Number_GraterEqualThan_Left, null, null));
+        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Number_GreaterEqualThan_Left, null, num1));
+        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Number_GreaterEqualThan_Left, num1, null));
+        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Number_GreaterEqualThan_Left, null, null));
         assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Number_LessEqualThan_Left, null, num1));
         assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Number_LessEqualThan_Left, num1, null));
         assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Number_LessEqualThan_Left, null, null));
         // parseエラー
-        try { CompareUtils.compareInCriteria(CompareCriteria.Number_GraterThan_Left, str1, num1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
-        try { CompareUtils.compareInCriteria(CompareCriteria.Number_GraterThan_Left, num1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
-        try { CompareUtils.compareInCriteria(CompareCriteria.Number_GraterThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Number_GreaterThan_Left, str1, num1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Number_GreaterThan_Left, num1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Number_GreaterThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
         try { CompareUtils.compareInCriteria(CompareCriteria.Number_LessThan_Left, str1, num1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
         try { CompareUtils.compareInCriteria(CompareCriteria.Number_LessThan_Left, num1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
         try { CompareUtils.compareInCriteria(CompareCriteria.Number_LessThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
-        try { CompareUtils.compareInCriteria(CompareCriteria.Number_GraterEqualThan_Left, str1, num1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
-        try { CompareUtils.compareInCriteria(CompareCriteria.Number_GraterEqualThan_Left, num1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
-        try { CompareUtils.compareInCriteria(CompareCriteria.Number_GraterEqualThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Number_GreaterEqualThan_Left, str1, num1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Number_GreaterEqualThan_Left, num1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Number_GreaterEqualThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
         try { CompareUtils.compareInCriteria(CompareCriteria.Number_LessEqualThan_Left, str1, num1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
         try { CompareUtils.compareInCriteria(CompareCriteria.Number_LessEqualThan_Left, num1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
         try { CompareUtils.compareInCriteria(CompareCriteria.Number_LessEqualThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
@@ -167,41 +167,41 @@ public class CompareUtilsTest {
         String year1 = "2014";
         String year2 = "2015";
         String year3 = "2016";
-        assertEquals("年＜ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Year_GraterThan_Left, year2, year3));
-        assertEquals("年＜ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Year_GraterThan_Left, year2, year2));
-        assertEquals("年＜ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Year_GraterThan_Left, year2, year1));
+        assertEquals("年＜ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Year_GreaterThan_Left, year2, year3));
+        assertEquals("年＜ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Year_GreaterThan_Left, year2, year2));
+        assertEquals("年＜ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Year_GreaterThan_Left, year2, year1));
         assertEquals("年＞ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Year_LessThan_Left, year2, year1));
         assertEquals("年＞ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Year_LessThan_Left, year2, year2));
         assertEquals("年＞ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Year_LessThan_Left, year2, year3));
-        assertEquals("年＜＝ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Year_GraterEqualThan_Left, year1, year2));
-        assertEquals("年＜＝ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Year_GraterEqualThan_Left, year2, year2));
-        assertEquals("年＜＝ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Year_GraterEqualThan_Left, year3, year2));
+        assertEquals("年＜＝ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Year_GreaterEqualThan_Left, year1, year2));
+        assertEquals("年＜＝ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Year_GreaterEqualThan_Left, year2, year2));
+        assertEquals("年＜＝ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Year_GreaterEqualThan_Left, year3, year2));
         assertEquals("年＞＝ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Year_LessEqualThan_Left, year3, year2));
         assertEquals("年＜＝ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Year_LessEqualThan_Left, year2, year2));
         assertEquals("年＞＝ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Year_LessEqualThan_Left, year1, year2));
         // nullチェック
-        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Year_GraterThan_Left, null, year1));
-        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Year_GraterThan_Left, year1, null));
-        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Year_GraterThan_Left, null, null));
+        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Year_GreaterThan_Left, null, year1));
+        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Year_GreaterThan_Left, year1, null));
+        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Year_GreaterThan_Left, null, null));
         assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Year_LessThan_Left, null, year1));
         assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Year_LessThan_Left, year1, null));
         assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Year_LessThan_Left, null, null));
-        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Year_GraterEqualThan_Left, null, year1));
-        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Year_GraterEqualThan_Left, year1, null));
-        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Year_GraterEqualThan_Left, null, null));
+        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Year_GreaterEqualThan_Left, null, year1));
+        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Year_GreaterEqualThan_Left, year1, null));
+        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Year_GreaterEqualThan_Left, null, null));
         assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Year_LessEqualThan_Left, null, year1));
         assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Year_LessEqualThan_Left, year1, null));
         assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Year_LessEqualThan_Left, null, null));
         // parseエラー
-        try { CompareUtils.compareInCriteria(CompareCriteria.Year_GraterThan_Left, str1, year1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
-        try { CompareUtils.compareInCriteria(CompareCriteria.Year_GraterThan_Left, year1, "100"); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
-        try { CompareUtils.compareInCriteria(CompareCriteria.Year_GraterThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Year_GreaterThan_Left, str1, year1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Year_GreaterThan_Left, year1, "100"); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Year_GreaterThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
         try { CompareUtils.compareInCriteria(CompareCriteria.Year_LessThan_Left, str1, year1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
         try { CompareUtils.compareInCriteria(CompareCriteria.Year_LessThan_Left, year1, "100"); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
         try { CompareUtils.compareInCriteria(CompareCriteria.Year_LessThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
-        try { CompareUtils.compareInCriteria(CompareCriteria.Year_GraterEqualThan_Left, str1, year1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
-        try { CompareUtils.compareInCriteria(CompareCriteria.Year_GraterEqualThan_Left, year1, "100"); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
-        try { CompareUtils.compareInCriteria(CompareCriteria.Year_GraterEqualThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Year_GreaterEqualThan_Left, str1, year1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Year_GreaterEqualThan_Left, year1, "100"); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Year_GreaterEqualThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
         try { CompareUtils.compareInCriteria(CompareCriteria.Year_LessEqualThan_Left, str1, year1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
         try { CompareUtils.compareInCriteria(CompareCriteria.Year_LessEqualThan_Left, year1, "100"); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
         try { CompareUtils.compareInCriteria(CompareCriteria.Year_LessEqualThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
@@ -212,41 +212,41 @@ public class CompareUtilsTest {
         String month1 = "201412";
         String month2 = "201501";
         String month3 = "201502";
-        assertEquals("年月＜ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Month_GraterThan_Left, month2, month3));
-        assertEquals("年月＜ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Month_GraterThan_Left, month2, month2));
-        assertEquals("年月＜ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Month_GraterThan_Left, month2, month1));
+        assertEquals("年月＜ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Month_GreaterThan_Left, month2, month3));
+        assertEquals("年月＜ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Month_GreaterThan_Left, month2, month2));
+        assertEquals("年月＜ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Month_GreaterThan_Left, month2, month1));
         assertEquals("年月＞ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Month_LessThan_Left, month2, month1));
         assertEquals("年月＞ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Month_LessThan_Left, month2, month2));
         assertEquals("年月＞ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Month_LessThan_Left, month2, month3));
-        assertEquals("年月＜＝ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Month_GraterEqualThan_Left, month1, month2));
-        assertEquals("年月＜＝ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Month_GraterEqualThan_Left, month2, month2));
-        assertEquals("年月＜＝ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Month_GraterEqualThan_Left, month3, month2));
+        assertEquals("年月＜＝ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Month_GreaterEqualThan_Left, month1, month2));
+        assertEquals("年月＜＝ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Month_GreaterEqualThan_Left, month2, month2));
+        assertEquals("年月＜＝ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Month_GreaterEqualThan_Left, month3, month2));
         assertEquals("年月＞＝ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Month_LessEqualThan_Left, month3, month2));
         assertEquals("年月＞＝ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Month_LessEqualThan_Left, month2, month2));
         assertEquals("年月＞＝ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Month_LessEqualThan_Left, month1, month2));
         // nullチェック
-        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Month_GraterThan_Left, null, month1));
-        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Month_GraterThan_Left, month1, null));
-        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Month_GraterThan_Left, null, null));
+        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Month_GreaterThan_Left, null, month1));
+        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Month_GreaterThan_Left, month1, null));
+        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Month_GreaterThan_Left, null, null));
         assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Month_LessThan_Left, null, month1));
         assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Month_LessThan_Left, month1, null));
         assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Month_LessThan_Left, null, null));
-        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Month_GraterEqualThan_Left, null, month1));
-        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Month_GraterEqualThan_Left, month1, null));
-        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Month_GraterEqualThan_Left, null, null));
+        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Month_GreaterEqualThan_Left, null, month1));
+        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Month_GreaterEqualThan_Left, month1, null));
+        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Month_GreaterEqualThan_Left, null, null));
         assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Month_LessEqualThan_Left, null, month1));
         assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Month_LessEqualThan_Left, month1, null));
         assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Month_LessEqualThan_Left, null, null));
         // parseエラー
-        try { CompareUtils.compareInCriteria(CompareCriteria.Month_GraterThan_Left, str1, month1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
-        try { CompareUtils.compareInCriteria(CompareCriteria.Month_GraterThan_Left, month1, "100"); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
-        try { CompareUtils.compareInCriteria(CompareCriteria.Month_GraterThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Month_GreaterThan_Left, str1, month1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Month_GreaterThan_Left, month1, "100"); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Month_GreaterThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
         try { CompareUtils.compareInCriteria(CompareCriteria.Month_LessThan_Left, str1, month1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
         try { CompareUtils.compareInCriteria(CompareCriteria.Month_LessThan_Left, month1, "100"); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
         try { CompareUtils.compareInCriteria(CompareCriteria.Month_LessThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
-        try { CompareUtils.compareInCriteria(CompareCriteria.Month_GraterEqualThan_Left, str1, month1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
-        try { CompareUtils.compareInCriteria(CompareCriteria.Month_GraterEqualThan_Left, month1, "100"); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
-        try { CompareUtils.compareInCriteria(CompareCriteria.Month_GraterEqualThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Month_GreaterEqualThan_Left, str1, month1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Month_GreaterEqualThan_Left, month1, "100"); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Month_GreaterEqualThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
         try { CompareUtils.compareInCriteria(CompareCriteria.Month_LessEqualThan_Left, str1, month1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
         try { CompareUtils.compareInCriteria(CompareCriteria.Month_LessEqualThan_Left, month1, "100"); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
         try { CompareUtils.compareInCriteria(CompareCriteria.Month_LessEqualThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
@@ -257,41 +257,41 @@ public class CompareUtilsTest {
         String date1 = "20141231";
         String date2 = "20150101";
         String date3 = "2015-01-02";
-        assertEquals("年月日＜ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Date_GraterThan_Left, date2, date3));
-        assertEquals("年月日＜ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Date_GraterThan_Left, date2, date2));
-        assertEquals("年月日＜ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Date_GraterThan_Left, date2, date1));
+        assertEquals("年月日＜ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Date_GreaterThan_Left, date2, date3));
+        assertEquals("年月日＜ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Date_GreaterThan_Left, date2, date2));
+        assertEquals("年月日＜ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Date_GreaterThan_Left, date2, date1));
         assertEquals("年月日＞ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Date_LessThan_Left, date2, date1));
         assertEquals("年月日＞ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Date_LessThan_Left, date2, date2));
         assertEquals("年月日＞ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Date_LessThan_Left, date2, date3));
-        assertEquals("年月日＜＝ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Date_GraterEqualThan_Left, date1, date2));
-        assertEquals("年月日＜＝ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Date_GraterEqualThan_Left, date2, date2));
-        assertEquals("年月日＜＝ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Date_GraterEqualThan_Left, date3, date2));
+        assertEquals("年月日＜＝ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Date_GreaterEqualThan_Left, date1, date2));
+        assertEquals("年月日＜＝ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Date_GreaterEqualThan_Left, date2, date2));
+        assertEquals("年月日＜＝ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Date_GreaterEqualThan_Left, date3, date2));
         assertEquals("年月日＞＝ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Date_LessEqualThan_Left, date3, date2));
         assertEquals("年月日＞＝ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Date_LessEqualThan_Left, date2, date2));
         assertEquals("年月日＞＝ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Date_LessEqualThan_Left, date1, date2));
         // nullチェック
-        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Date_GraterThan_Left, null, date1));
-        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Date_GraterThan_Left, date1, null));
-        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Date_GraterThan_Left, null, null));
+        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Date_GreaterThan_Left, null, date1));
+        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Date_GreaterThan_Left, date1, null));
+        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Date_GreaterThan_Left, null, null));
         assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Date_LessThan_Left, null, date1));
         assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Date_LessThan_Left, date1, null));
         assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Date_LessThan_Left, null, null));
-        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Date_GraterEqualThan_Left, null, date1));
-        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Date_GraterEqualThan_Left, date1, null));
-        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Date_GraterEqualThan_Left, null, null));
+        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Date_GreaterEqualThan_Left, null, date1));
+        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Date_GreaterEqualThan_Left, date1, null));
+        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Date_GreaterEqualThan_Left, null, null));
         assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Date_LessEqualThan_Left, null, date1));
         assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Date_LessEqualThan_Left, date1, null));
         assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Date_LessEqualThan_Left, null, null));
         // parseエラー
-        try { CompareUtils.compareInCriteria(CompareCriteria.Date_GraterThan_Left, str1, date1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
-        try { CompareUtils.compareInCriteria(CompareCriteria.Date_GraterThan_Left, date1, "100"); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
-        try { CompareUtils.compareInCriteria(CompareCriteria.Date_GraterThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Date_GreaterThan_Left, str1, date1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Date_GreaterThan_Left, date1, "100"); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Date_GreaterThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
         try { CompareUtils.compareInCriteria(CompareCriteria.Date_LessThan_Left, str1, date1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
         try { CompareUtils.compareInCriteria(CompareCriteria.Date_LessThan_Left, date1, "100"); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
         try { CompareUtils.compareInCriteria(CompareCriteria.Date_LessThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
-        try { CompareUtils.compareInCriteria(CompareCriteria.Date_GraterEqualThan_Left, str1, date1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
-        try { CompareUtils.compareInCriteria(CompareCriteria.Date_GraterEqualThan_Left, date1, "100"); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
-        try { CompareUtils.compareInCriteria(CompareCriteria.Date_GraterEqualThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Date_GreaterEqualThan_Left, str1, date1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Date_GreaterEqualThan_Left, date1, "100"); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Date_GreaterEqualThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
         try { CompareUtils.compareInCriteria(CompareCriteria.Date_LessEqualThan_Left, str1, date1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
         try { CompareUtils.compareInCriteria(CompareCriteria.Date_LessEqualThan_Left, date1, "100"); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
         try { CompareUtils.compareInCriteria(CompareCriteria.Date_LessEqualThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
@@ -302,41 +302,41 @@ public class CompareUtilsTest {
         String datetime1 = "2014/12/31 23:59:59.999";
         String datetime2 = "2015/01/01";
         String datetime3 = "2015-01-01T00:00:00.001+0900";
-        assertEquals("日時＜ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Datetime_GraterThan_Left, datetime2, datetime3));
-        assertEquals("日時＜ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Datetime_GraterThan_Left, datetime2, datetime2));
-        assertEquals("日時＜ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Datetime_GraterThan_Left, datetime2, datetime1));
+        assertEquals("日時＜ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Datetime_GreaterThan_Left, datetime2, datetime3));
+        assertEquals("日時＜ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Datetime_GreaterThan_Left, datetime2, datetime2));
+        assertEquals("日時＜ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Datetime_GreaterThan_Left, datetime2, datetime1));
         assertEquals("日時＞ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Datetime_LessThan_Left, datetime2, datetime1));
         assertEquals("日時＞ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Datetime_LessThan_Left, datetime2, datetime2));
         assertEquals("日時＞ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Datetime_LessThan_Left, datetime2, datetime3));
-        assertEquals("日時＜＝ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Datetime_GraterEqualThan_Left, datetime1, datetime2));
-        assertEquals("日時＜＝ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Datetime_GraterEqualThan_Left, datetime2, datetime2));
-        assertEquals("日時＜＝ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Datetime_GraterEqualThan_Left, datetime3, datetime2));
+        assertEquals("日時＜＝ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Datetime_GreaterEqualThan_Left, datetime1, datetime2));
+        assertEquals("日時＜＝ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Datetime_GreaterEqualThan_Left, datetime2, datetime2));
+        assertEquals("日時＜＝ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Datetime_GreaterEqualThan_Left, datetime3, datetime2));
         assertEquals("日時＞＝ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Datetime_LessEqualThan_Left, datetime3, datetime2));
         assertEquals("日時＜＝ OK", CompareStatus.OK, CompareUtils.compareInCriteria(CompareCriteria.Datetime_LessEqualThan_Left, datetime2, datetime2));
         assertEquals("日時＞＝ NG", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Datetime_LessEqualThan_Left, datetime1, datetime2));
         // nullチェック
-        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Datetime_GraterThan_Left, null, datetime1));
-        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Datetime_GraterThan_Left, datetime1, null));
-        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Datetime_GraterThan_Left, null, null));
+        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Datetime_GreaterThan_Left, null, datetime1));
+        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Datetime_GreaterThan_Left, datetime1, null));
+        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Datetime_GreaterThan_Left, null, null));
         assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Datetime_LessThan_Left, null, datetime1));
         assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Datetime_LessThan_Left, datetime1, null));
         assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Datetime_LessThan_Left, null, null));
-        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Datetime_GraterEqualThan_Left, null, datetime1));
-        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Datetime_GraterEqualThan_Left, datetime1, null));
-        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Datetime_GraterEqualThan_Left, null, null));
+        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Datetime_GreaterEqualThan_Left, null, datetime1));
+        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Datetime_GreaterEqualThan_Left, datetime1, null));
+        assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Datetime_GreaterEqualThan_Left, null, null));
         assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Datetime_LessEqualThan_Left, null, datetime1));
         assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Datetime_LessEqualThan_Left, datetime1, null));
         assertEquals("nullチェック", CompareStatus.NG, CompareUtils.compareInCriteria(CompareCriteria.Datetime_LessEqualThan_Left, null, null));
         // parseエラー
-        try { CompareUtils.compareInCriteria(CompareCriteria.Datetime_GraterThan_Left, str1, datetime1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
-        try { CompareUtils.compareInCriteria(CompareCriteria.Datetime_GraterThan_Left, datetime1, "100"); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
-        try { CompareUtils.compareInCriteria(CompareCriteria.Datetime_GraterThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Datetime_GreaterThan_Left, str1, datetime1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Datetime_GreaterThan_Left, datetime1, "100"); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Datetime_GreaterThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
         try { CompareUtils.compareInCriteria(CompareCriteria.Datetime_LessThan_Left, str1, datetime1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
         try { CompareUtils.compareInCriteria(CompareCriteria.Datetime_LessThan_Left, datetime1, "100"); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
         try { CompareUtils.compareInCriteria(CompareCriteria.Datetime_LessThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
-        try { CompareUtils.compareInCriteria(CompareCriteria.Datetime_GraterEqualThan_Left, str1, datetime1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
-        try { CompareUtils.compareInCriteria(CompareCriteria.Datetime_GraterEqualThan_Left, datetime1, "100"); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
-        try { CompareUtils.compareInCriteria(CompareCriteria.Datetime_GraterEqualThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Datetime_GreaterEqualThan_Left, str1, datetime1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Datetime_GreaterEqualThan_Left, datetime1, "100"); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
+        try { CompareUtils.compareInCriteria(CompareCriteria.Datetime_GreaterEqualThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
         try { CompareUtils.compareInCriteria(CompareCriteria.Datetime_LessEqualThan_Left, str1, datetime1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
         try { CompareUtils.compareInCriteria(CompareCriteria.Datetime_LessEqualThan_Left, datetime1, "100"); fail(); } catch (Exception e) { log.debug(e.getMessage()); }
         try { CompareUtils.compareInCriteria(CompareCriteria.Datetime_LessEqualThan_Left, str1, str1); fail(); } catch (Exception e) { log.debug(e.getMessage()); }

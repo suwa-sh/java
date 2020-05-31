@@ -359,24 +359,47 @@ public final class TestUtils {
             return false;
         }
 
-        // 期待値ファイルの読み込み
-        String expectFileContent = StringUtils.EMPTY;
+        // 期待値ファイルコンテンツ
+        List<String> expectLineList = null;
         try {
-            expectFileContent = FileUtils.readFileToString(expectFile, charset);
+            expectLineList = FileUtils.readLines(expectFile, charset);
         } catch (Exception e) {
             throw new RuntimeException("期待値ファイル：" + expectFile.getName() + " の読み込みに失敗しました。", e);
         }
 
-        // 実績値ファイルの読み込み
-        String actualFileContent = StringUtils.EMPTY;
+        // 実績値ファイルコンテンツ
+        List<String> actualLineList = null;
         try {
-            actualFileContent = FileUtils.readFileToString(actualFile, charset);
+            actualLineList = FileUtils.readLines(actualFile, charset);
         } catch (Exception e) {
             throw new RuntimeException("実績値ファイル：" + actualFile.getName() + " の読み込みに失敗しました。", e);
         }
 
+        // 行数比較
+        if (expectLineList.size() != actualLineList.size()) {
+            System.err.println("・行数が異なります。");
+            System.err.println("  ・expect:" + expectFile);
+            System.err.println("    ・行数:" + expectLineList.size());
+            System.err.println("  ・actual:" + actualFile);
+            System.err.println("    ・行数:" + actualLineList.size());
+            return false;
+        }
+
         // 内容比較
-        return actualFileContent.equals(expectFileContent);
+        for (int idx = 0; idx < expectLineList.size(); idx++) {
+            String expectLine = expectLineList.get(idx);
+            String actualLine = actualLineList.get(idx);
+            if (! expectLine.equals(actualLine)) {
+                System.err.println("・ファイルの内容が異なります。行番号:" + (idx + 1));
+                System.err.println("  ・expect:" + expectFile);
+                System.err.println("    ・内容:" + expectLine);
+                System.err.println("  ・actual:" + actualFile);
+                System.err.println("    ・内容:" + actualLine);
+                return false;
+            }
+        }
+
+        return true;
     }
 
 }

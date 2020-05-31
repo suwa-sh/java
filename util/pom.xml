@@ -9,8 +9,8 @@
     </parent>
 
     <artifactId>util</artifactId>
-    <version>1.0.0</version>
-    <name>suwa-sh Commons Util</name>
+    <version>1.2.0</version>
+    <name>suwa-sh-commons-util</name>
     <description>共通ユーティリティライブラリ</description>
 
     <properties>

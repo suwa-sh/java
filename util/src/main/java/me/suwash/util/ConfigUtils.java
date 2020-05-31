@@ -2,6 +2,8 @@ package me.suwash.util;
 
 import java.util.Locale;
 
+import org.apache.commons.lang.StringUtils;
+
 
 /**
  * 設定関連ユーティリティ。
@@ -82,7 +84,7 @@ public final class ConfigUtils {
         }
 
         fileNameBuilder.append('.').append(ext);
-        return fileNameBuilder.toString();
+        return fileNameBuilder.toString().replace("_config", StringUtils.EMPTY);
     }
 
 }

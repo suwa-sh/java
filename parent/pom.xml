@@ -17,11 +17,6 @@
 
     <repositories>
         <repository>
-            <id>spring-libs-release-remote</id>
-            <name>Spring Libs Release Remote</name>
-            <url>https://repo.spring.io/libs-release-remote</url>
-        </repository>
-        <repository>
             <id>me.suwash</id>
             <name>me.suwash Repository</name>
             <url>https://github.com/suwa-sh/mvn-repo/raw/master/</url>

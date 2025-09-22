@@ -56,24 +56,24 @@ jobs:
       - name: Build and publish parent POM
         run: |
           cd parent
-          mvn clean compile install deploy -DskipTests
+          mvn clean compile install deploy -DskipTests -Dsite-maven-plugin.skip=true
 
       - name: Build and publish ddd package
         run: |
           cd ddd
-          mvn clean compile install deploy -DskipTests
+          mvn clean compile install deploy -DskipTests -Dsite-maven-plugin.skip=true
 
       - name: Build and publish test package
         run: |
           cd test
-          mvn clean compile install deploy -DskipTests
+          mvn clean compile install deploy -DskipTests -Dsite-maven-plugin.skip=true
 
       - name: Build and publish util package
         run: |
           cd util
-          mvn clean compile install deploy -DskipTests
+          mvn clean compile install deploy -DskipTests -Dsite-maven-plugin.skip=true
 
       - name: Build and publish checks package
         run: |
           cd checks
-          mvn clean compile install deploy -DskipTests
+          mvn clean compile install deploy -DskipTests -Dsite-maven-plugin.skip=true
